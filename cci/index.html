@@ -429,7 +429,7 @@
               continue;
             }
             if (!NAME_SHORT_DESCRIPTION_MAP[key]) {
-              console.error(`No description for ${key}`);
+              console.warn(`No description for ${key}`);
               continue;
             }
             narrative.push(NAME_SHORT_DESCRIPTION_MAP[key]);

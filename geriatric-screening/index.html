@@ -19,7 +19,7 @@
 
         <form
           id="calculator"
-          class="rounded-md"
+          class="rounded-md space-y-8 divide-y-1"
           oninput="
         risk_score= parseInt(A1.value)+
                     parseInt(A2.value)+
@@ -52,325 +52,329 @@
           else{cadidate_rating.value = ''}         
         "
         >
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+          <div class="space-y-1">
             <label class="block text-base sm:text-sm font-bold text-gray-700">
               (A) PATIENT'S READINESS LEVEL and ILLNESS MANAGEMENT (0-24)
             </label>
-          </div>
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Item 1: Knowledge and understanding of medical illness process
-              (that caused specific organ failure)
-            </label>
-            <input
-              class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
-              type="number"
-              name="A1"
-              min="0"
-              max="4"
-              value="0"
-            />
-          </div>
+            <div>
+              <label
+                class="block text-base sm:text-sm font-medium text-gray-700"
+              >
+                Item 1: Knowledge and understanding of medical illness process
+                (that caused specific organ failure)
+              </label>
+              <input
+                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
+                type="number"
+                name="A1"
+                min="0"
+                max="4"
+                value="0"
+              />
+            </div>
 
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2"></div>
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Item 2: Knowledge and understanding of the process of
-              transplantation
-            </label>
-            <input
-              class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
-              type="number"
-              name="A2"
-              min="0"
-              max="4"
-              value="0"
-            />
+            <div>
+              <label
+                class="block text-base sm:text-sm font-medium text-gray-700"
+              >
+                Item 2: Knowledge and understanding of the process of
+                transplantation
+              </label>
+              <input
+                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
+                type="number"
+                name="A2"
+                min="0"
+                max="4"
+                value="0"
+              />
+            </div>
+
+            <div>
+              <label
+                class="block text-base sm:text-sm font-medium text-gray-700"
+              >
+                Item 3: Willingness/desire for treatment (transplant)
+              </label>
+              <input
+                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
+                type="number"
+                name="A3"
+                min="0"
+                max="4"
+                value="0"
+              />
+            </div>
+
+            <div>
+              <label
+                class="block text-base sm:text-sm font-medium text-gray-700"
+              >
+                Item 4: History of treatment adherence/compliance (pertinent to
+                medical issues)
+              </label>
+              <input
+                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
+                type="number"
+                name="A4"
+                min="0"
+                max="8"
+                value="0"
+              />
+            </div>
+
+            <div>
+              <label
+                class="block text-base sm:text-sm font-medium text-gray-700"
+              >
+                Item 5: Lifestyle factors (including diet, exercise, fluid
+                restrictions, and habits according to organ system)
+              </label>
+              <input
+                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
+                type="number"
+                name="A5"
+                min="0"
+                max="4"
+                value="0"
+              />
+            </div>
           </div>
-
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2"></div>
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Item 3: Willingness/desire for treatment (transplant)
-            </label>
-            <input
-              class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
-              type="number"
-              name="A3"
-              min="0"
-              max="4"
-              value="0"
-            />
-          </div>
-
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2"></div>
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Item 4: History of treatment adherence/compliance (pertinent to
-              medical issues)
-            </label>
-            <input
-              class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
-              type="number"
-              name="A4"
-              min="0"
-              max="8"
-              value="0"
-            />
-          </div>
-
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2"></div>
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Item 5: Lifestyle factors (including diet, exercise, fluid
-              restrictions, and habits according to organ system)
-            </label>
-            <input
-              class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
-              type="number"
-              name="A5"
-              min="0"
-              max="4"
-              value="0"
-            />
-          </div>
-
-          <p>&nbsp;</p>
-
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+          <div class="space-y-1">
             <label class="block text-base sm:text-sm font-bold text-gray-700">
               (B) SOCIAL SUPPORT SYSTEM LEVEL OF READINESS (3 items)
             </label>
-          </div>
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Item 6: Availability of social support system
-            </label>
-            <input
-              class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
-              type="number"
-              name="B6"
-              min="0"
-              max="8"
-              value="0"
-            />
-          </div>
+            <div>
+              <label
+                class="block text-base sm:text-sm font-medium text-gray-700"
+              >
+                Item 6: Availability of social support system
+              </label>
+              <input
+                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
+                type="number"
+                name="B6"
+                min="0"
+                max="8"
+                value="0"
+              />
+            </div>
 
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2"></div>
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Item 7: Functionality of social support system
-            </label>
-            <input
-              class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
-              type="number"
-              name="B7"
-              min="0"
-              max="8"
-              value="0"
-            />
+            <div>
+              <label
+                class="block text-base sm:text-sm font-medium text-gray-700"
+              >
+                Item 7: Functionality of social support system
+              </label>
+              <input
+                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
+                type="number"
+                name="B7"
+                min="0"
+                max="8"
+                value="0"
+              />
+            </div>
+
+            <div class="space-y-1">
+              <label
+                class="block text-base sm:text-sm font-medium text-gray-700"
+              >
+                Item 8: Appropriateness of physical living space and environment
+              </label>
+              <input
+                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
+                type="number"
+                name="B8"
+                min="0"
+                max="4"
+                value="0"
+              />
+            </div>
           </div>
-
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2"></div>
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Item 8: Appropriateness of physical living space and environment
-            </label>
-            <input
-              class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
-              type="number"
-              name="B8"
-              min="0"
-              max="4"
-              value="0"
-            />
-          </div>
-
-          <p>&nbsp;</p>
-
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+          <div class="space-y-1">
             <label class="block text-base sm:text-sm font-bold text-gray-700">
               (C) PSYCHOLOGICAL STABILITY AND PSYCHOPATHOLOGY (5 items)
             </label>
+            <div>
+              <label
+                class="block text-base sm:text-sm font-medium text-gray-700"
+              >
+                Item 9: Presence of psychopathology (other than personality
+                disorders and organic psychopathology)
+              </label>
+              <input
+                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
+                type="number"
+                name="C9"
+                min="0"
+                max="8"
+                value="0"
+              />
+            </div>
+            <div>
+              <label
+                class="block text-base sm:text-sm font-medium text-gray-700"
+              >
+                Item 10: History of organic psychopathology or neurocognitive
+                impairment (i.e., illness or medication-induced psychopathology)
+              </label>
+              <input
+                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
+                type="number"
+                name="C10"
+                min="0"
+                max="5"
+                value="0"
+              />
+            </div>
+            <div>
+              <label
+                class="block text-base sm:text-sm font-medium text-gray-700"
+              >
+                Item 11: Influence of personality traits vs. disorder
+              </label>
+              <input
+                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
+                type="number"
+                name="C11"
+                min="0"
+                max="4"
+                value="0"
+              />
+            </div>
+            <div>
+              <label
+                class="block text-base sm:text-sm font-medium text-gray-700"
+              >
+                Item 12: Effect of truthfulness vs. deceptive behavior
+              </label>
+              <input
+                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
+                type="number"
+                name="C12"
+                min="0"
+                max="8"
+                value="0"
+              />
+            </div>
+            <div>
+              <label
+                class="block text-base sm:text-sm font-medium text-gray-700"
+              >
+                Item 13: Overall risk for psychopathology
+              </label>
+              <input
+                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
+                type="number"
+                name="C13"
+                min="0"
+                max="4"
+                value="0"
+              />
+            </div>
           </div>
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Item 9: Presence of psychopathology (other than personality
-              disorders and organic psychopathology)
-            </label>
-            <input
-              class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
-              type="number"
-              name="C9"
-              min="0"
-              max="8"
-              value="0"
-            />
-          </div>
-
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2"></div>
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Item 10: History of organic psychopathology or neurocognitive
-              impairment (i.e., illness or medication-induced psychopathology)
-            </label>
-            <input
-              class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
-              type="number"
-              name="C10"
-              min="0"
-              max="5"
-              value="0"
-            />
-          </div>
-
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2"></div>
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Item 11: Influence of personality traits vs. disorder
-            </label>
-            <input
-              class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
-              type="number"
-              name="C11"
-              min="0"
-              max="4"
-              value="0"
-            />
-          </div>
-
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2"></div>
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Item 12: Effect of truthfulness vs. deceptive behavior
-            </label>
-            <input
-              class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
-              type="number"
-              name="C12"
-              min="0"
-              max="8"
-              value="0"
-            />
-          </div>
-
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2"></div>
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Item 13: Overall risk for psychopathology
-            </label>
-            <input
-              class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
-              type="number"
-              name="C13"
-              min="0"
-              max="4"
-              value="0"
-            />
-          </div>
-
-          <p>&nbsp;</p>
-
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+          <div class="space-y-1">
             <label class="block text-base sm:text-sm font-bold text-gray-700">
               (D) LIFESTYLE AND EFFECT OF SUBSTANCE USE (5 items)
             </label>
+            <div>
+              <label
+                class="block text-base sm:text-sm font-medium text-gray-700"
+              >
+                Item 14: Alcohol use, abuse, and dependence
+              </label>
+              <input
+                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
+                type="number"
+                name="D14"
+                min="0"
+                max="8"
+                value="0"
+              />
+            </div>
+
+            <div>
+              <label
+                class="block text-base sm:text-sm font-medium text-gray-700"
+              >
+                Item 15: Alcohol abuse - risk for recidivism
+              </label>
+              <input
+                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
+                type="number"
+                name="D15"
+                min="0"
+                max="4"
+                value="0"
+              />
+            </div>
+
+            <div>
+              <label
+                class="block text-base sm:text-sm font-medium text-gray-700"
+              >
+                Item 16: Illicit substance, abuse and dependence
+              </label>
+              <input
+                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
+                type="number"
+                name="D16"
+                min="0"
+                max="8"
+                value="0"
+              />
+            </div>
+
+            <div>
+              <label
+                class="block text-base sm:text-sm font-medium text-gray-700"
+              >
+                Item 17: Illicit substance abuse - risk for recidivism
+              </label>
+              <input
+                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
+                type="number"
+                name="D17"
+                min="0"
+                max="4"
+                value="0"
+              />
+            </div>
+
+            <div>
+              <label
+                class="block text-base sm:text-sm font-medium text-gray-700"
+              >
+                Item 18: Nicotine use, abuse, and dependence
+              </label>
+              <input
+                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
+                type="number"
+                name="D18"
+                min="0"
+                max="5"
+                value="0"
+              />
+            </div>
           </div>
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Item 14: Alcohol use, abuse, and dependence
-            </label>
-            <input
-              class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
-              type="number"
-              name="D14"
-              min="0"
-              max="8"
-              value="0"
-            />
-          </div>
-
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2"></div>
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Item 15: Alcohol abuse - risk for recidivism
-            </label>
-            <input
-              class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
-              type="number"
-              name="D15"
-              min="0"
-              max="4"
-              value="0"
-            />
-          </div>
-
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2"></div>
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Item 16: Illicit substance, abuse and dependence
-            </label>
-            <input
-              class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
-              type="number"
-              name="D16"
-              min="0"
-              max="8"
-              value="0"
-            />
-          </div>
-
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2"></div>
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Item 17: Illicit substance abuse - risk for recidivism
-            </label>
-            <input
-              class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
-              type="number"
-              name="D17"
-              min="0"
-              max="4"
-              value="0"
-            />
-          </div>
-
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2"></div>
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Item 18: Nicotine use, abuse, and dependence
-            </label>
-            <input
-              class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
-              type="number"
-              name="D18"
-              min="0"
-              max="5"
-              value="0"
-            />
-          </div>
-
-          <p>&nbsp;</p>
-
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2 block">
-            <label class="block font-bold text-gray-700"
-              >TOTAL RISK SCORE</label
-            >
-
-            <p>&nbsp;</p>
-            <output
-              name="total_risk_score"
-              class="block w-fit text-2xl text-center items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-blue-700 bg-indigo-50 hover:bg-indigo-300"
-            />
-          </div>
-
-          <p>&nbsp;</p>
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2 block">
-            <label class="block font-bold text-gray-700"></label>
-            <output
-              name="cadidate_rating"
-              class="block w-fit text-2xl text-center items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-blue-700 bg-indigo-50 hover:bg-indigo-300"
-            />
+          <div class="space-y-2">
+            <div class="block">
+              <label class="block font-bold text-gray-700"
+                >TOTAL RISK SCORE</label
+              >
+              <output
+                name="total_risk_score"
+                class="block mt-2 w-fit text-2xl text-center items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-blue-700 bg-indigo-50 hover:bg-indigo-300"
+              />
+            </div>
+            <div class="block">
+              <label class="block font-bold text-gray-700"></label>
+              <output
+                name="cadidate_rating"
+                class="block w-fit text-2xl text-center items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-blue-700 bg-indigo-50 hover:bg-indigo-300"
+              />
+            </div>
           </div>
         </form>
       </div>
@@ -385,6 +389,10 @@
              * The object bellow is the Observation instance that will be sent back to Cicero
              **/
             const observation = {
+              text: {
+                status: "generated",
+                div: `<span>${data.total_risk_score}</span>`,
+              },
               resourceType: "Observation",
               code: {
                 text: "Geriatische screening",
@@ -403,7 +411,7 @@
                 system: "http://snomed.info/sct",
               },
             };
-            console.debug(observation);
+            console.log(observation);
             return observation;
           },
           { autoSave: true }

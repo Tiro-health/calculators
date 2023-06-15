@@ -7,6 +7,7 @@
     <meta charset="UTF-8" />
   </head>
   <body>
+    <script type="text/javascript"></script>
     <div
       class="min-h-full flex items-center justify-center py-12 px-10 sm:px-6 lg:px-8"
     >
@@ -16,7 +17,6 @@
             Charlson Comorbidity Index
           </h1>
         </div>
-
         <form
           id="calculator"
           class="rounded-md"
@@ -399,12 +399,43 @@
               class="block w-fit text-2xl text-center items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-blue-700 bg-indigo-50 hover:bg-indigo-300"
             />
           </div>
-          <button>Test submit</button>
         </form>
       </div>
     </div>
     <script>
       $(document).ready(function () {
+        const NAME_SHORT_DESCRIPTION_MAP = {
+          mi: "MI",
+          chf: "CHF",
+          pvd: "Peripheral vascular disease",
+          cvatia: "CVA or TIA",
+          dementia: "dementia",
+          copd: "COPD",
+          ctd: "Connective tissue disease",
+          pud: "Peptic ulcer disease",
+          ld: "Liver disease",
+          diabetes: "DM",
+          hemi: "Hemiplegia",
+          ckd: "Moderate to severe CKD",
+          tumor: "Solid tumor",
+          leukemia: "Leukemia",
+          lymphoma: "Lymphoma",
+          aids: "AIDS",
+        };
+        function dataToNarrative(data) {
+          const narrative = [];
+          for (const [key, value] of Object.entries(data)) {
+            if (value === "0") {
+              continue;
+            }
+            if (!NAME_SHORT_DESCRIPTION_MAP[key]) {
+              console.error(`No description for ${key}`);
+              continue;
+            }
+            narrative.push(NAME_SHORT_DESCRIPTION_MAP[key]);
+          }
+          return `<span>${data.cci} (${narrative.join(", ")})</span>`;
+        }
         console.debug("1. Connecting calculator...");
         makeCalculatorV2(
           "calculator",
@@ -413,6 +444,10 @@
              * The object bellow is the Observation instance that will be sent back to Cicero
              **/
             const observation = {
+              text: {
+                status: "generated",
+                div: dataToNarrative(data),
+              },
               resourceType: "Observation",
               code: {
                 text: "Charlson Comorbidity Index",
@@ -431,7 +466,7 @@
                 system: "http://snomed.info/sct",
               },
             };
-            console.debug(observation);
+            console.log(observation);
             return observation;
           },
           { autoSave: true }

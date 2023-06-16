@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)https://andriesclinckaert.github.io/lni-calculator/ -->
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <script src="/calculators/makeCalculator.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Risico op lymfeklierinvasie</title>
+  </head>
+  <body>
+    <div
+      class="min-h-full flex items-center justify-center py-12 px-10 sm:px-6 lg:px-8"
+    >
+      <div class="sm:max-w-md w-full space-y-8">
+        <div>
+          <h1 class="mt-6 text-center text-3xl font-bold text-blue-700">
+            Risico op lymfeklierinvasie
+          </h1>
+          <p class="mt-2 text-center text-xs text-gray-500 font-serif">
+            Draulans C, Everaerts W, Isebaert S, Van Bruwaene S, Gevaert T, Oyen
+            R, Joniau S, Lerut E, De Wever L, Laenen A, Weynand B, Defraene G,
+            Vanhoutte E, De Meerleer G, Haustermans K. Development and External
+            Validation of a Multiparametric Magnetic Resonance Imaging and
+            International Society of Urological Pathology Based Add-On
+            Prediction Tool to Identify Prostate Cancer Candidates for Pelvic
+            Lymph Node Dissection. J Urol. 2020 Apr;203(4):713-718. doi:
+            10.1097/JU.0000000000000652. Epub 2019 Nov 13. PMID: 31718396.
+          </p>
+        </div>
+        <form
+          id="calculator"
+          class="rounded-md"
+          oninput="
+          mu = (-6.4605 + (mpMRI.value * 0.3833) + (iPSA.valueAsNumber * 0.0228) + (tumorlenght.valueAsNumber * 0.1443) + (ISUP.value * 0.6220));
+          calc = (Math.exp(mu) / (1 + Math.exp(mu)) * 100);
+          if(isNaN(calc)){result.value = '...'}
+            else{result.value = calc.toPrecision(2) + '%'}
+          "
+        >
+          <div class="mt-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              mpMRI based T stage:
+            </label>
+            <input
+              class="rounded text-blue-700"
+              type="radio"
+              name="mpMRI"
+              value="1"
+            /><label class="mx-1">cT1c</label>
+            <input
+              class="rounded text-blue-700"
+              type="radio"
+              name="mpMRI"
+              value="2"
+            /><label class="mx-1">cT2a</label>
+            <input
+              class="rounded text-blue-700"
+              type="radio"
+              name="mpMRI"
+              value="3"
+            /><label class="mx-1">cT2b</label>
+            <input
+              class="rounded text-blue-700"
+              type="radio"
+              name="mpMRI"
+              value="4"
+            /><label class="mx-1">cT2c</label>
+            <input
+              class="rounded text-blue-700"
+              type="radio"
+              name="mpMRI"
+              value="5"
+            /><label class="mx-1">cT3a</label>
+            <input
+              class="rounded text-blue-700"
+              type="radio"
+              name="mpMRI"
+              value="6"
+            /><label class="mx-1">cT3b</label>
+            <input
+              class="rounded text-blue-700"
+              type="radio"
+              name="mpMRI"
+              value="7"
+            /><label class="mx-1">cT4</label>
+          </div>
+          <div class="mt-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              iPSA (ng/mL):
+            </label>
+
+            <input
+              class="t-1 block shadow-sm text-base sm:text-sm border-gray-300 rounded-md"
+              type="number"
+              name="iPSA"
+              min="0"
+              max="10000"
+            />
+          </div>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              Maximum tumor length in one core (mm):
+            </label>
+            <input
+              class="t-1 block shadow-sm text-base sm:text-sm border-gray-300 rounded-md"
+              type="number"
+              name="tumorlenght"
+              min="0"
+              max="100"
+            />
+          </div>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              ISUP grade:
+            </label>
+            <select
+              class="t-1 block shadow-sm text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="ISUP"
+            >
+              <option value="1">ISUP 1</option>
+              <option value="2">ISUP 2</option>
+              <option value="3">ISUP 3</option>
+              <option value="4">ISUP 4</option>
+              <option value="5">ISUP 5</option>
+            </select>
+          </div>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2 block">
+            <label class="block font-bold text-gray-700">Resultaat:</label>
+            <output
+              name="result"
+              class="block w-fit text-2xl text-center items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-blue-700 bg-indigo-50 hover:bg-indigo-300"
+              >... %</output
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+    <script>
+      console.debug("1. Connecting calculator...");
+      makeCalculatorV3(
+        "calculator",
+        function (input, output) {
+          /**
+           * The object bellow is the Observation instance that will be sent back to Cicero
+           */
+          const observation = {
+            resourceType: "Observation",
+            text: {
+              status: "generated",
+              div: `<div xmlns='http://www.w3.org/1999/xhtml'>${output.value} %</div>`,
+            },
+            code: {
+              text: "Risk of lymphe node invasion",
+              coding: [],
+            },
+            valueQuantity: {
+              value: parseFloat(output.value),
+              unit: "%",
+              code: "%",
+              system: "http://unitsofmeasure.org",
+            },
+          };
+          return observation;
+        },
+        { autoSave: true }
+      );
+      console.debug("2. Calculator setup done.");
+    </script>
+  </body>
+</html>

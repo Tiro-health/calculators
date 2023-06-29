@@ -141,7 +141,7 @@
       console.debug("1. Connecting calculator...");
       makeCalculatorV3(
         "calculator",
-        function (input, output) {
+        function (data) {
           /**
            * The object bellow is the Observation instance that will be sent back to Cicero
            */
@@ -149,14 +149,14 @@
             resourceType: "Observation",
             text: {
               status: "generated",
-              div: `<div xmlns='http://www.w3.org/1999/xhtml'>${output.value} %</div>`,
+              div: `<div xmlns='http://www.w3.org/1999/xhtml'>${data.result} %</div>`,
             },
             code: {
               text: "Risk of lymphe node invasion",
               coding: [],
             },
             valueQuantity: {
-              value: parseFloat(output.value),
+              value: parseFloat(data.result),
               unit: "%",
               code: "%",
               system: "http://unitsofmeasure.org",

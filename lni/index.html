@@ -149,11 +149,17 @@
             resourceType: "Observation",
             text: {
               status: "generated",
-              div: `<div xmlns='http://www.w3.org/1999/xhtml'>${data.result} %</div>`,
+              div: `<div xmlns='http://www.w3.org/1999/xhtml'>Risk of lymphe node invasion: ${data.result}</div>`,
             },
             code: {
               text: "Risk of lymphe node invasion",
-              coding: [],
+              coding: [
+                {
+                  system: "http://loinc.org",
+                  code: "LP212322-0",
+                  display: "Risk of lymphe node invasion",
+                },
+              ],
             },
             valueQuantity: {
               value: parseFloat(calc),

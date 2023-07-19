@@ -3,7 +3,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
     <script src="/calculators/makeCalculator.js"></script>
-    <title>Charlson Comorbidity Index</title>
+    <title>Self-Administered Comorbidity Questionnaire</title>
     <meta charset="UTF-8" />
   </head>
   <body>
@@ -17,200 +17,115 @@
             Charlson Comorbidity Index
           </h1>
         </div>
-        <form
-          id="calculator"
-          class="rounded-md"
-          oninput="
-          cci_result = parseInt(age.value)
-              +parseInt(mi.value)
-              +parseInt(chf.value)
-              +parseInt(pvd.value)
-              +parseInt(cvatia.value)
-              +parseInt(dementia.value)
-              +parseInt(copd.value)
-              +parseInt(ctd.value)
-              +parseInt(pud.value)
-              +parseInt(ld.value)
-              +parseInt(diabetes.value)
-              +parseInt(hemi.value)
-              +parseInt(ckd.value)
-              +parseInt(tumor.value) 
-              +parseInt(leukemia.value)
-              +parseInt(lymphoma.value)
-              +parseInt(aids.value)
-          if(isNaN(cci_result)){cci.value = '... points'}
-            else if (cci_result=='1'){cci.value = cci_result + ' point'}
-            else{cci.value = cci_result + ' points'}
-
-          exp=Math.exp(cci_result*0.9)
-          survival_result=Math.pow(0.983, exp)*100
-          if(isNaN(survival_result)){survival.value = '... %'}
-            else if (survival_result<'0.0000001') {survival.value = '0 %'}
-            else{survival.value = survival_result.toPrecision(2) + '%'}
-          "
-        >
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Age:
-            </label>
-            <select
-              class="t-1 block shadow-sm sm:text-base border-gray-300 rounded-md"
-              as="select"
-              name="age"
-              value="0"
-            >
-              <option selected="selected" value="0">&#60;50 years</option>
-              <option value="1">50-59 years</option>
-              <option value="2">60-69 years</option>
-              <option value="3">70-79 years</option>
-              <option value="4">≥80 years</option>
-            </select>
-          </div>
-
+        <form>
           <div class="mt-2">
             <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Myocardial infarction:
+              I have no other diseases:
             </label>
             <input
               class="rounded text-blue-700"
               type="radio"
-              name="mi"
+              name="diseases"
               value="0"
               checked="checked"
             /><label class="mx-1">No</label>
             <input
               class="rounded text-blue-700"
               type="radio"
-              name="mi"
+              name="diseases"
               value="1"
             /><label class="mx-1">Yes</label>
           </div>
 
           <div class="mt-2">
             <label class="block text-base sm:text-sm font-medium text-gray-700">
-              CHF:
+              Heart disease (angina, heart attack or heart failure):
             </label>
             <input
               class="rounded text-blue-700"
               type="radio"
-              name="chf"
+              name="heart"
               value="0"
               checked="checked"
             /><label class="mx-1">No</label>
             <input
               class="rounded text-blue-700"
               type="radio"
-              name="chf"
+              name="heart"
               value="1"
             /><label class="mx-1">Yes</label>
           </div>
 
           <div class="mt-2">
             <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Peripheral vascular disease:
+              High blood pressure:
             </label>
             <input
               class="rounded text-blue-700"
               type="radio"
-              name="pvd"
+              name="bloodpressure"
               value="0"
               checked="checked"
             /><label class="mx-1">No</label>
             <input
               class="rounded text-blue-700"
               type="radio"
-              name="pvd"
+              name="bloodpressure"
               value="1"
             /><label class="mx-1">Yes</label>
           </div>
 
           <div class="mt-2">
             <label class="block text-base sm:text-sm font-medium text-gray-700">
-              CVA or TIA:
+              Leg pain when walking due to poor circulation:
             </label>
             <input
               class="rounded text-blue-700"
               type="radio"
-              name="cvatia"
+              name="legpain"
               value="0"
               checked="checked"
             /><label class="mx-1">No</label>
             <input
               class="rounded text-blue-700"
               type="radio"
-              name="cvatia"
+              name="legpain"
               value="1"
             /><label class="mx-1">Yes</label>
           </div>
           <div class="mt-2">
             <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Dementia:
+              Diabetes:
             </label>
             <input
               class="rounded text-blue-700"
               type="radio"
-              name="dementia"
+              name="diabetes"
               value="0"
               checked="checked"
             /><label class="mx-1">No</label>
             <input
               class="rounded text-blue-700"
               type="radio"
-              name="dementia"
+              name="diabetes"
               value="1"
             /><label class="mx-1">Yes</label>
           </div>
           <div class="mt-2">
             <label class="block text-base sm:text-sm font-medium text-gray-700">
-              COPD:
+              Kidney disease:
             </label>
             <input
               class="rounded text-blue-700"
               type="radio"
-              name="copd"
+              name="kidney"
               value="0"
               checked="checked"
             /><label class="mx-1">No</label>
             <input
               class="rounded text-blue-700"
               type="radio"
-              name="copd"
-              value="1"
-            /><label class="mx-1">Yes</label>
-          </div>
-          <div class="mt-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Connective tissue disease:
-            </label>
-            <input
-              class="rounded text-blue-700"
-              type="radio"
-              name="ctd"
-              value="0"
-              checked="checked"
-            /><label class="mx-1">No</label>
-            <input
-              class="rounded text-blue-700"
-              type="radio"
-              name="ctd"
-              value="1"
-            /><label class="mx-1">Yes</label>
-          </div>
-          <div class="mt-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Peptic ulcer disease:
-            </label>
-            <input
-              class="rounded text-blue-700"
-              type="radio"
-              name="pud"
-              value="0"
-              checked="checked"
-            /><label class="mx-1">No</label>
-            <input
-              class="rounded text-blue-700"
-              type="radio"
-              name="pud"
+              name="kidney"
               value="1"
             /><label class="mx-1">Yes</label>
           </div>
@@ -221,206 +136,87 @@
             <input
               class="rounded text-blue-700"
               type="radio"
-              name="ld"
+              name="liver"
               value="0"
               checked="checked"
-            /><label class="mx-1">None</label>
+            /><label class="mx-1">No</label>
             <input
               class="rounded text-blue-700"
               type="radio"
-              name="ld"
+              name="liver"
               value="1"
-            /><label class="mx-1">Mild</label>
-            <input
-              class="rounded text-blue-700"
-              type="radio"
-              name="ld"
-              value="2"
-            /><label class="mx-1">Moderate to severe</label>
+            /><label class="mx-1">Yes</label>
           </div>
           <div class="mt-2">
             <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Diabetes mellitus:
+              Problem caused by stroke:
             </label>
             <input
               class="rounded text-blue-700"
               type="radio"
-              name="diabetes"
+              name="stroke"
               value="0"
               checked="checked"
-              /><label class="mx-1">None/diet-controlled</label>
-              <input
+            /><label class="mx-1">No</label>
+            <input
               class="rounded text-blue-700"
               type="radio"
-              name="diabetes"
+              name="stroke"
               value="1"
-            />
-            <label class="mx-1">Uncomplicated</label>
-            <input
-              class="rounded text-blue-700"
-              type="radio"
-              name="diabetes"
-              value="2"
-            />
-            <label class="mx-1">End-organ damage</label>
+            /><label class="mx-1">Yes</label>
           </div>
           <div class="mt-2">
             <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Hemiplegia:
+              Disease of the nervous system (Parkinson's or multiple sclerosis):
             </label>
             <input
               class="rounded text-blue-700"
               type="radio"
-              name="hemi"
+              name="nervous"
               value="0"
               checked="checked"
             /><label class="mx-1">No</label>
             <input
               class="rounded text-blue-700"
               type="radio"
-              name="hemi"
-              value="2"
+              name="nervous"
+              value="1"
             /><label class="mx-1">Yes</label>
           </div>
           <div class="mt-2">
             <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Moderate to severe CKD:
+              Other cancer (within the last 5 years):
             </label>
             <input
               class="rounded text-blue-700"
               type="radio"
-              name="ckd"
+              name="cancer"
               value="0"
               checked="checked"
             /><label class="mx-1">No</label>
             <input
               class="rounded text-blue-700"
               type="radio"
-              name="ckd"
-              value="2"
+              name="cancer"
+              value="1"
             /><label class="mx-1">Yes</label>
-          </div>
-          <div class="mt-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Solid tumor:
-            </label>
-            <input
-              class="rounded text-blue-700"
-              type="radio"
-              name="tumor"
-              value="0"
-              checked="checked"
-            /><label class="mx-1">None</label>
-            <input
-              class="rounded text-blue-700"
-              type="radio"
-              name="tumor"
-              value="2"
-            /><label class="mx-1">Localized</label>
-            <input
-              class="rounded text-blue-700"
-              type="radio"
-              name="tumor"
-              value="6"
-            /><label class="mx-1">Metastatic</label>
-          </div>
-          <div class="mt-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Leukemia:
-            </label>
-            <input
-              class="rounded text-blue-700"
-              type="radio"
-              name="leukemia"
-              value="0"
-              checked="checked"
-            /><label class="mx-1">No</label>
-            <input
-              class="rounded text-blue-700"
-              type="radio"
-              name="leukemia"
-              value="2"
-            /><label class="mx-1">Yes</label>
-          </div>
-          <div class="mt-2">
-            <div class="text-base sm:text-sm font-medium text-gray-700">
-              Lymphoma:
-            </div>
-            <input
-              class="rounded text-blue-700"
-              type="radio"
-              id="lymphoma-no"
-              name="lymphoma"
-              value="0"
-              checked="checked"
-            /><label for="lymphoma-no" class="mx-1">No</label>
-            <input
-              class="rounded text-blue-700"
-              type="radio"
-              id="lymphoma-yes"
-              name="lymphoma"
-              value="2"
-            /><label for="lymphoma-yes" class="mx-1">Yes</label>
-          </div>
-          <div class="mt-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              AIDS:
-            </label>
-            <input
-              class="rounded text-blue-700"
-              type="radio"
-              name="aids"
-              value="0"
-              checked="checked"
-            /><label class="mx-1">No</label>
-            <input
-              class="rounded text-blue-700"
-              type="radio"
-              name="aids"
-              value="6"
-            /><label class="mx-1">Yes</label>
-          </div>
           <p>&nbsp;</p>
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2 block">
-            <label class="block font-bold text-gray-700"
-              >Charlson Comorbidity Index:</label
-            >
-            <output
-              name="cci"
-              class="block w-fit text-2xl text-center items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-blue-700 bg-indigo-50 hover:bg-indigo-300"
-            />
-          </div>
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2 block">
-            <label class="block font-bold text-gray-700"
-              >Estimated 10-year survival:</label
-            >
-            <output
-              name="survival"
-              class="block w-fit text-2xl text-center items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-blue-700 bg-indigo-50 hover:bg-indigo-300"
-            />
-          </div>
         </form>
       </div>
     </div>
     <script>
       $(document).ready(function () {
         const NAME_SHORT_DESCRIPTION_MAP = {
-          mi: "MI",
-          chf: "CHF",
-          pvd: "Peripheral vascular disease",
-          cvatia: "CVA or TIA",
-          dementia: "dementia",
-          copd: "COPD",
-          ctd: "Connective tissue disease",
-          pud: "Peptic ulcer disease",
-          ld: "Liver disease",
-          diabetes: "DM",
-          hemi: "Hemiplegia",
-          ckd: "CKD",
-          tumor: "Solid tumor",
-          leukemia: "Leukemia",
-          lymphoma: "Lymphoma",
-          aids: "AIDS",
+          diseases: "No other diseases",
+          heart: "Heart disease",
+          bloodpressure: "High blood pressure",
+          legpain: "Leg pain when walking due to poor circulation",
+          diabetes: "Diabetes",
+          kidney: "Kidney disease",
+          liver: "Liver disease",
+          stroke: "Problem caused by stroke",
+          nervous: "Disease of the nervous system",
+          cancer: "Other cancer",
         };
         function dataToNarrative(data) {
           const narrative = [];
@@ -430,30 +226,6 @@
             }
             if (!NAME_SHORT_DESCRIPTION_MAP[key]) {
               console.warn(`No description for ${key}`);
-              continue;
-            }
-            if (NAME_SHORT_DESCRIPTION_MAP[key] === "diabetes" && value === "1") {
-              narrative.push("Diabetes mellitus uncomplicated ");
-              continue;
-            }
-            else if (NAME_SHORT_DESCRIPTION_MAP[key] === "diabetes" && value === "2") {
-              narrative.push("Diabetes mellitus with end-organ damage ");
-              continue;
-            }
-            if (NAME_SHORT_DESCRIPTION_MAP[key] === "ld" && value === "1") {
-              narrative.push("Liver disease mild ");
-              continue;
-            }
-            else if (NAME_SHORT_DESCRIPTION_MAP[key] === "ld" && value === "2") {
-              narrative.push("Liver disease moderate to severe ");
-              continue;
-            }
-            if (NAME_SHORT_DESCRIPTION_MAP[key] === "tumor" && value === "2") {
-              narrative.push("Solid tumor localized ");
-              continue;
-            }
-            else if (NAME_SHORT_DESCRIPTION_MAP[key] === "tumor" && value === "6") {
-              narrative.push("Solid tumor metastatic ");
               continue;
             }
             narrative.push(NAME_SHORT_DESCRIPTION_MAP[key]);
@@ -474,20 +246,14 @@
               },
               resourceType: "Observation",
               code: {
-                text: "Charlson Comorbidity Index",
+                text: "Self-Administered Comorbidity Questionnaire",
                 coding: [
                   {
-                    display: "Charlson Comorbidity Index",
-                    code: "762713009",
-                    system: "http://snomed.info/sct",
+                    display: "Self-Administered Comorbidity Questionnaire",
+                    code: "4a7763975f9f4e52b3ece82e395ec374",
+                    system: "http://tiro.health/fhir/CodeSystem/auto-generated",
                   },
                 ],
-              },
-              valueQuantity: {
-                value: cci_result,
-                unit: "points",
-                code: "281850001",
-                system: "http://snomed.info/sct",
               },
             };
             console.log(observation);

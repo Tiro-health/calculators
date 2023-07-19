@@ -2,7 +2,7 @@
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
-    <script src="/calculators/makeCalculator.js"></script>
+    <script src="../makeCalculator.js"></script>
     <title>Self-Administered Comorbidity Questionnaire</title>
     <meta charset="UTF-8" />
   </head>
@@ -17,7 +17,10 @@
             Charlson Comorbidity Index
           </h1>
         </div>
-        <form>
+        <form
+          id="calculator"
+          class="rounded-md"
+        >
           <div class="mt-2">
             <label class="block text-base sm:text-sm font-medium text-gray-700">
               I have no other diseases:
@@ -239,6 +242,7 @@
             /**
              * The object bellow is the Observation instance that will be sent back to Cicero
              **/
+            console.log(data)
             const observation = {
               text: {
                 status: "generated",

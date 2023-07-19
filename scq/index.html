@@ -259,8 +259,15 @@
                   },
                 ],
               },
-            };
+              valueQuantity: {
+                value: "",
+                unit: "",
+                code: "dummy",
+                system: "http://tiro.health/fhir/CodeSystem/auto-generated",
+              },
+            }
             console.log(observation);
+            console.log(dataToNarrative(data));
             return observation;
           },
           { autoSave: true }

@@ -248,8 +248,8 @@
               name="diabetes"
               value="0"
               checked="checked"
-            /><label class="mx-1">None/diet-controlled</label>
-            <input
+              /><label class="mx-1">None/diet-controlled</label>
+              <input
               class="rounded text-blue-700"
               type="radio"
               name="diabetes"
@@ -310,7 +310,7 @@
               name="tumor"
               value="0"
               checked="checked"
-            /><label class="mx-1">None/diet-controlled</label>
+            /><label class="mx-1">None</label>
             <input
               class="rounded text-blue-700"
               type="radio"
@@ -430,6 +430,30 @@
             }
             if (!NAME_SHORT_DESCRIPTION_MAP[key]) {
               console.warn(`No description for ${key}`);
+              continue;
+            }
+            if (NAME_SHORT_DESCRIPTION_MAP[key] === "diabetes" && value === "1") {
+              narrative.push("Diabetes mellitus uncomplicated ");
+              continue;
+            }
+            else if (NAME_SHORT_DESCRIPTION_MAP[key] === "diabetes" && value === "2") {
+              narrative.push("Diabetes mellitus with end-organ damage ");
+              continue;
+            }
+            if (NAME_SHORT_DESCRIPTION_MAP[key] === "ld" && value === "1") {
+              narrative.push("Liver disease mild ");
+              continue;
+            }
+            else if (NAME_SHORT_DESCRIPTION_MAP[key] === "ld" && value === "2") {
+              narrative.push("Liver disease moderate to severe ");
+              continue;
+            }
+            if (NAME_SHORT_DESCRIPTION_MAP[key] === "tumor" && value === "2") {
+              narrative.push("Solid tumor localized ");
+              continue;
+            }
+            else if (NAME_SHORT_DESCRIPTION_MAP[key] === "tumor" && value === "6") {
+              narrative.push("Solid tumor metastatic ");
               continue;
             }
             narrative.push(NAME_SHORT_DESCRIPTION_MAP[key]);

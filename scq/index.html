@@ -233,7 +233,7 @@
             }
             narrative.push(NAME_SHORT_DESCRIPTION_MAP[key]);
           }
-          return `<span>${data.cci} (${narrative.join(", ")})</span>`;
+          return `${narrative.join(", ")}`;
         }
         console.debug("1. Connecting calculator...");
         makeCalculatorV3(
@@ -246,7 +246,7 @@
             const observation = {
               text: {
                 status: "generated",
-                div: "",
+                div: dataToNarrative(data),
               },
               resourceType: "Observation",
               code: {

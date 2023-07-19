@@ -246,7 +246,7 @@
             const observation = {
               text: {
                 status: "generated",
-                div: dataToNarrative(data),
+                //div: dataToNarrative(data),
               },
               resourceType: "Observation",
               code: {
@@ -260,8 +260,8 @@
                 ],
               },
               valueQuantity: {
-                value: "",
-                unit: "",
+                value: "0",
+                unit: dataToNarrative(data),
                 code: "dummy",
                 system: "http://tiro.health/fhir/CodeSystem/auto-generated",
               },

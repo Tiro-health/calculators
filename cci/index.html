@@ -2,7 +2,7 @@
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
-    <script src="/calculators/makeCalculator.js"></script>
+    <script src="../makeCalculator.js"></script>
     <title>Charlson Comorbidity Index</title>
     <meta charset="UTF-8" />
   </head>
@@ -424,6 +424,7 @@
         };
         function dataToNarrative(data) {
           const narrative = [];
+          console.log(data);
           for (const [key, value] of Object.entries(data)) {
             if (value === "0") {
               continue;
@@ -432,31 +433,40 @@
               console.warn(`No description for ${key}`);
               continue;
             }
-            if (NAME_SHORT_DESCRIPTION_MAP[key] === "diabetes" && value === "1") {
-              narrative.push("Diabetes mellitus uncomplicated ");
-              continue;
+            switch(key){
+              case "diabetes":
+                if (value === "1") {
+                  narrative.push("Diabetes mellitus uncomplicated ");
+                  continue;
+                }
+                else if (value === "2") {
+                  narrative.push("Diabetes mellitus with end-organ damage ");
+                  continue;
+                }
+                break;
+                case "ld":
+                  if (value === "1") {
+                    narrative.push("Liver disease mild ");
+                    continue;
+                  }
+                  else if (value === "2") {
+                    narrative.push("Liver disease moderate to severe ");
+                    continue;
+                  }
+                  break;
+                case "tumor":
+                  if (value === "2") {
+                    narrative.push("Solid tumor localized ");
+                    continue;
+                  }
+                  else if (value === "6") {
+                    narrative.push("Solid tumor metastatic ");
+                    continue;
+                  }
+                  break;
+                default:
+                  narrative.push(NAME_SHORT_DESCRIPTION_MAP[key]);
             }
-            else if (NAME_SHORT_DESCRIPTION_MAP[key] === "diabetes" && value === "2") {
-              narrative.push("Diabetes mellitus with end-organ damage ");
-              continue;
-            }
-            if (NAME_SHORT_DESCRIPTION_MAP[key] === "ld" && value === "1") {
-              narrative.push("Liver disease mild ");
-              continue;
-            }
-            else if (NAME_SHORT_DESCRIPTION_MAP[key] === "ld" && value === "2") {
-              narrative.push("Liver disease moderate to severe ");
-              continue;
-            }
-            if (NAME_SHORT_DESCRIPTION_MAP[key] === "tumor" && value === "2") {
-              narrative.push("Solid tumor localized ");
-              continue;
-            }
-            else if (NAME_SHORT_DESCRIPTION_MAP[key] === "tumor" && value === "6") {
-              narrative.push("Solid tumor metastatic ");
-              continue;
-            }
-            narrative.push(NAME_SHORT_DESCRIPTION_MAP[key]);
           }
           return `<span>${data.cci} (${narrative.join(", ")})</span>`;
         }
@@ -496,8 +506,6 @@
           { autoSave: true }
         );
         console.debug("2. Calculator setup done.");
-        console.log(observation);
-        console.log(dataToNarrative(data));
       });
     </script>
   </body>

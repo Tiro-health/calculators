@@ -432,27 +432,27 @@
               console.warn(`No description for ${key}`);
               continue;
             }
-            if (NAME_SHORT_DESCRIPTION_MAP[key] === diabetes && value === "1") {
+            if (NAME_SHORT_DESCRIPTION_MAP[key] === "diabetes" && value === "1") {
               narrative.push("Diabetes mellitus uncomplicated ");
               continue;
             }
-            else if (NAME_SHORT_DESCRIPTION_MAP[key] === diabetes && value === "2") {
+            else if (NAME_SHORT_DESCRIPTION_MAP[key] === "diabetes" && value === "2") {
               narrative.push("Diabetes mellitus with end-organ damage ");
               continue;
             }
-            if (NAME_SHORT_DESCRIPTION_MAP[key] === ld && value === "1") {
+            if (NAME_SHORT_DESCRIPTION_MAP[key] === "ld" && value === "1") {
               narrative.push("Liver disease mild ");
               continue;
             }
-            else if (NAME_SHORT_DESCRIPTION_MAP[key] === ld && value === "2") {
+            else if (NAME_SHORT_DESCRIPTION_MAP[key] === "ld" && value === "2") {
               narrative.push("Liver disease moderate to severe ");
               continue;
             }
-            if (NAME_SHORT_DESCRIPTION_MAP[key] === tumor && value === "2") {
+            if (NAME_SHORT_DESCRIPTION_MAP[key] === "tumor" && value === "2") {
               narrative.push("Solid tumor localized ");
               continue;
             }
-            else if (NAME_SHORT_DESCRIPTION_MAP[key] === tumor && value === "6") {
+            else if (NAME_SHORT_DESCRIPTION_MAP[key] === "tumor" && value === "6") {
               narrative.push("Solid tumor metastatic ");
               continue;
             }

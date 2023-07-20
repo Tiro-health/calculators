@@ -242,7 +242,6 @@
             /**
              * The object bellow is the Observation instance that will be sent back to Cicero
              **/
-            console.log(data)
             const observation = {
               text: {
                 status: "generated",
@@ -266,8 +265,6 @@
                 system: "http://tiro.health/fhir/CodeSystem/auto-generated",
               },
             }
-            console.log(observation);
-            console.log(dataToNarrative(data));
             return observation;
           },
           { autoSave: true }

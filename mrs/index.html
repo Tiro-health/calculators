@@ -1,0 +1,102 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <script src="../makeCalculator.js"></script>
+    <title>Modified Rankin Scale for Neurologic Disability</title>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <div
+      class="min-h-full flex items-center justify-center py-12 px-10 sm:px-6 lg:px-8"
+    >
+      <div class="sm:max-w-md w-full space-y-8">
+        <div>
+          <h1 class="mt-6 text-center text-3xl font-bold text-blue-700">
+            Modified Rankin Scale for Neurologic Disability
+          </h1>
+        </div>
+
+        <form
+          id="calculator"
+          class="rounded-md"
+          oninput="
+        mrs_score= parseInt(baseline.value)
+
+        if(isNaN(mrs_score)){mrs.value = '... points'}
+          else if (mrs_score=='1'){mrs.value = mrs_score + ' point'}
+          else{mrs.value = mrs_score + ' points'}
+       
+        "
+        >
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+              <label class="block font-bold text-gray-700">
+
+              Patient's Baseline Activity
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="baseline"
+              value="0"
+            >
+              <option selected="selected" value="0">No symptoms at all</option>
+              <option value="1">No significant disability despite symptoms; able to carry out all usual duties and activities</option>
+              <option value="2">Slight disability; unable to carry out all previous activities, but able to look after own affairs without assistance</option>
+              <option value="3">Moderate disability; requiring some help, but able to walk without assistance</option>
+              <option value="4">Moderately severe disability; unable to walk and attend to bodily needs without assistance</option>
+              <option value="5">Severe disability; bedridden, incontinent and requiring constant nursing care and attention</option>
+              <option value="6">Dead</option>
+            </select>
+          </div>
+          <p>&nbsp;</p>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2 block">
+            <label class="block font-bold text-gray-700"
+              </label
+            >MRS
+            <output
+              name="mrs"
+              class="block w-fit text-2xl text-center items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-blue-700 bg-indigo-50 hover:bg-indigo-300"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function () {
+        console.debug('1. Connecting calculator...');
+        makeCalculatorV2(
+          'calculator',
+          function (data) {
+            /**
+             * The object bellow is the Observation instance that will be sent back to Cicero
+             **/
+            const observation = {
+              resourceType: 'Observation',
+              code: {
+                text: 'MRS',
+                coding: [
+                  {
+                    display: 'Modified Rankin Scale',
+                    code: '840352000',
+                    system: 'http://snomed.info/sct',
+                  },
+                ],
+              },
+              valueQuantity: {
+                value: mrs_score,
+                unit: 'points',
+                code: '281850001',
+                system: 'http://snomed.info/sct',
+              },
+            };
+            console.debug(observation);
+            return observation;
+          },
+          { autoSave: true },
+        );
+        console.debug('2. Calculator setup done.');
+      });
+    </script>
+  </body>
+</html>

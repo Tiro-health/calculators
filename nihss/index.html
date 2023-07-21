@@ -1,0 +1,442 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <script src="../makeCalculator.js"></script>
+    <title>NIH Stroke Scale/Score (NIHSS)</title>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <div
+      class="min-h-full flex items-center justify-center py-12 px-10 sm:px-6 lg:px-8"
+    >
+      <div class="sm:max-w-md w-full space-y-8">
+        <div>
+          <h1 class="mt-6 text-center text-3xl font-bold text-blue-700">
+            NIH Stroke Scale/Score (NIHSS)
+          </h1>
+        </div>
+
+        <form
+          id="calculator"
+          class="rounded-md"
+          oninput="
+        nihss_score= 
+
+                    parseInt(consciousness.value)+
+                    parseInt(month_age.value)+
+                    parseInt(blink_squeeze.value)+
+                    parseInt(movements.value)+
+                    parseInt(visual.value)+
+                    parseInt(facial.value)+
+                    parseInt(left_arm.value)+
+                    parseInt(right_arm.value)+
+                    parseInt(left_leg.value)+
+                    parseInt(right_leg.value)+
+                    parseInt(limb_ataxia.value)+
+                    parseInt(sensation.value)+
+                    parseInt(language.value)+
+                    parseInt(dysarthria.value)+
+                    parseInt(extinction.value)
+
+        if(isNaN(nihss_score)){nihss.value = '... points'}
+          else if (nihss_score=='1'){nihss.value = nihss_score + ' point'}
+          else{nihss.value = nihss_score + ' points'}
+       
+        "
+        >
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              1A: Level of consciousness
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="consciousness"
+              value="0"
+            >
+              <option selected="selected" value="0"
+                >Alert; keenly responsive</option
+              >
+              <option value="1">Arouses to minor stimulation</option>
+              <option value="2">Requires repeated stimulation to arouse</option>
+              <option value="2">Movements to pain</option>
+              <option value="3">Postures or unresponsive</option>
+            </select>
+          </div>
+
+          <p>&nbsp;</p>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              1B: Ask month and age
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="month_age"
+              value="0"
+            >
+              <option selected="selected" value="0"
+                >Both questions right</option
+              >
+              <option value="1">1 question right</option>
+              <option value="2">0 questions right</option>
+              <option value="1"
+                >Dysarthric/intubated/trauma/language barrier</option
+              >
+              <option value="2">Aphasic</option>
+            </select>
+          </div>
+
+          <p>&nbsp;</p>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              1C: 'Blink eyes' & 'squeeze hands'
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="blink_squeeze"
+              value="0"
+            >
+              <option selected="selected" value="0">Performs both tasks</option>
+              <option value="1">Performs 1 task</option>
+              <option value="2">Performs 0 tasks</option>
+            </select>
+          </div>
+
+          <p>&nbsp;</p>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              2: Horizontal extraocular movements
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="movements"
+              value="0"
+            >
+              <option selected="selected" value="0">Normal</option>
+              <option value="1">Partial gaze palsy: can be overcome</option>
+              <option value="1"
+                >Partial gaze palsy: corrects with oculocephalic reflex</option
+              >
+              <option value="2">Forced gaze palsy: cannot be overcome</option>
+            </select>
+          </div>
+          <p>&nbsp;</p>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              3: Visual fields
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="visual"
+              value="0"
+            >
+              <option selected="selected" value="0">No visual loss</option>
+              <option value="1">Partial hemianopia</option>
+              <option value="2">Complete hemianopia</option>
+              <option value="3">Patient is bilaterally blind</option>
+              <option value="3">Bilateral hemianopia</option>
+            </select>
+          </div>
+          <p>&nbsp;</p>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              4: Facial palsy
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="facial"
+              value="0"
+            >
+              <option selected="selected" value="0">Normal symmetry</option>
+              <option value="1"
+                >Minor paralysis (flat nasolabial fold, smile asymmetry)</option
+              >
+              <option value="2">Partial paralysis (lower face)</option>
+              <option value="3"
+                >Unilateral complete paralysis (upper/lower face)</option
+              >
+              <option value="3"
+                >Bilateral complete paralysis (upper/lower face)</option
+              >
+            </select>
+          </div>
+          <p>&nbsp;</p>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              5A: Left arm motor drift
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="left_arm"
+              value="0"
+            >
+              <option selected="selected" value="0"
+                >No drift for 10 seconds</option
+              >
+              <option value="1">Drift, but doesn't hit bed</option>
+              <option value="2">Drift, hits bed</option>
+              <option value="2">Some effort against gravity</option>
+              <option value="3">No effort against gravity</option>
+              <option value="4">No movement</option>
+              <option value="0">Amputation/joint fusion</option>
+            </select>
+          </div>
+          <p>&nbsp;</p>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              5B: Right arm motor drift
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="right_arm"
+              value="0"
+            >
+              <option selected="selected" value="0"
+                >No drift for 10 seconds</option
+              >
+              <option value="1">Drift, but doesn't hit bed</option>
+              <option value="2">Drift, hits bed</option>
+              <option value="2">Some effort against gravity</option>
+              <option value="3">No effort against gravity</option>
+              <option value="4">No movement</option>
+              <option value="0">Amputation/joint fusion</option>
+            </select>
+          </div>
+          <p>&nbsp;</p>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              6A: Left leg motor drift
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="left_leg"
+              value="0"
+            >
+              <option selected="selected" value="0"
+                >No drift for 5 seconds</option
+              >
+              <option value="1">Drift, but doesn't hit bed</option>
+              <option value="2">Drift, hits bed</option>
+              <option value="2">Some effort against gravity</option>
+              <option value="3">No effort against gravity</option>
+              <option value="4">No movement</option>
+              <option value="0">Amputation/joint fusion</option>
+            </select>
+          </div>
+          <p>&nbsp;</p>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              6B: Right leg motor drift
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="right_leg"
+              value="0"
+            >
+              <option selected="selected" value="0"
+                >No drift for 5 seconds</option
+              >
+              <option value="1">Drift, but doesn't hit bed</option>
+              <option value="2">Drift, hits bed</option>
+              <option value="2">Some effort against gravity</option>
+              <option value="3">No effort against gravity</option>
+              <option value="4">No movement</option>
+              <option value="0">Amputation/joint fusion</option>
+            </select>
+          </div>
+          <p>&nbsp;</p>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              7: Limb Ataxia
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="limb_ataxia"
+              value="0"
+            >
+              <option selected="selected" value="0">No ataxia</option>
+              <option value="1">Ataxia in 1 Limb</option>
+              <option value="2">Ataxia in 2 Limbs</option>
+              <option value="0">Does not understand</option>
+              <option value="0">Paralyzed</option>
+              <option value="0">Amputation/joint fusion</option>
+            </select>
+          </div>
+          <p>&nbsp;</p>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              8: Sensation
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="sensation"
+              value="0"
+            >
+              <option selected="selected" value="0"
+                >Normal; no sensory loss</option
+              >
+              <option value="1"
+                >Mild-moderate loss: less sharp/more dull</option
+              >
+              <option value="1"
+                >Mild-moderate loss: can sense being touched</option
+              >
+              <option value="2"
+                >Complete loss: cannot sense being touched at all</option
+              >
+              <option value="2">No response and quadriplegic</option>
+              <option value="2">Coma/unresponsive</option>
+            </select>
+          </div>
+          <p>&nbsp;</p>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              9: Language/aphasia
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="language"
+              value="0"
+            >
+              <option selected="selected" value="0">Normal; no aphasia</option>
+              <option value="1"
+                >Mild-moderate aphasia: some obvious changes, without
+                significant limitation</option
+              >
+              <option value="2"
+                >Severe aphasia: fragmentary expression, inference needed,
+                cannot identify materials</option
+              >
+              <option value="3"
+                >Mute/global aphasia: no usable speech/auditory
+                comprehension</option
+              >
+              <option value="3">Coma/unresponsive</option>
+            </select>
+          </div>
+          <p>&nbsp;</p>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              10: Dysarthria
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="dysarthria"
+              value="0"
+            >
+              <option selected="selected" value="0">Normal</option>
+              <option value="1"
+                >Mild-moderate dysarthria: slurring but can be
+                understood</option
+              >
+              <option value="2"
+                >Severe dysarthria: unintelligible slurring or out of proportion
+                to dysphasia</option
+              >
+              <option value="2">Mute/anarthric</option>
+              <option value="0">Intubated/unable to test</option>
+            </select>
+          </div>
+          <p>&nbsp;</p>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              11: Extinction/inattention
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="extinction"
+              value="0"
+            >
+              <option selected="selected" value="0">No abnormality</option>
+              <option value="1"
+                >Visual/tactile/auditory/spatial/personal inattention</option
+              >
+              <option value="1"
+                >Extinction to bilateral simultaneous stimulation</option
+              >
+              <option value="2"
+                >Profound hemi-inattention (ex: does not recognize own
+                hand)</option
+              >
+              <option value="2">Extinction to >1 modality</option>
+            </select>
+          </div>
+          <p>&nbsp;</p>
+   
+        
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2 block">
+            <label class="block font-bold text-gray-700"
+              </label
+            >NIHSS
+            <output
+              name="nihss"
+              class="block w-fit text-2xl text-center items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-blue-700 bg-indigo-50 hover:bg-indigo-300"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function () {
+        console.debug('1. Connecting calculator...');
+        makeCalculatorV2(
+          'calculator',
+          function (data) {
+            /**
+             * The object bellow is the Observation instance that will be sent back to Cicero
+             **/
+            const observation = {
+              resourceType: 'Observation',
+              code: {
+                text: 'NIHSS',
+                coding: [
+                  {
+                    display: 'NIHSS',
+                    code: 'urn:uuid:866582c1-22b8-46b9-87f0-7eb18f99db50',
+                    system: 'http://tiro.health/fhir/CodeSystem/auto-generated',
+                  },
+                ],
+              },
+              valueQuantity: {
+                value: nihss_score,
+                unit: 'points',
+                code: '281850001',
+                system: 'http://snomed.info/sct',
+              },
+            };
+            console.debug(observation);
+            return observation;
+          },
+          { autoSave: true },
+        );
+        console.debug('2. Calculator setup done.');
+      });
+    </script>
+  </body>
+</html>

@@ -378,7 +378,7 @@
     <script>
       $(document).ready(function () {
         console.debug('1. Connecting calculator...');
-        makeCalculatorV2(
+        makeCalculatorV3(
           'calculator',
           function (data) {
             /**
@@ -386,6 +386,10 @@
              **/
             const observation = {
               resourceType: 'Observation',
+              text: {
+                status: "generated",
+                div: `<span xmlns='http://www.w3.org/1999/xhtml'>${data.result}</span>`,
+              },
               code: {
                 text: 'Lung Allocation Score',
                 coding: [
@@ -411,5 +415,6 @@
         console.debug('2. Calculator setup done.');
       });
     </script>
+</script>
   </body>
 </html>

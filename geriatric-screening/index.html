@@ -234,6 +234,7 @@
         makeCalculatorV3(
           'calculator',
           function (data) {
+            console.log(data)
             /**
              * The object bellow is the Observation instance that will be sent back to Cicero
              **/
@@ -241,7 +242,7 @@
             const observation = {
               text: {
                 status: "generated",
-                div: `<span xmlns='http://www.w3.org/1999/xhtml'>${risk_score}</span>`,
+                div: `<span>${data.result}</span>`,
               },
               resourceType: 'Observation',
               code: {

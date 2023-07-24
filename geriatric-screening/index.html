@@ -242,7 +242,7 @@
             const observation = {
               text: {
                 status: "generated",
-                div: `<span>${total_risk_score}</span>`,
+                div: `<span>${data.total_risk_score}</span>`,
               },
               resourceType: 'Observation',
               code: {
@@ -256,7 +256,7 @@
                 ],
               },
               valueQuantity: {
-                value: total_risk_score,
+                value: data.total_risk_score,
                 unit: 'points',
                 code: '281850001',
                 system: 'http://snomed.info/sct',

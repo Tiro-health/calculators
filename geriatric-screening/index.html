@@ -2,7 +2,7 @@
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
-    <script src="/calculators/makeCalculator.js"></script>
+    <script src="../makeCalculator.js"></script>
     <title>Geriatric Screening</title>
     <meta charset="UTF-8" />
   </head>
@@ -225,6 +225,7 @@
               class="block w-fit text-2xl text-center items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-blue-700 bg-indigo-50 hover:bg-indigo-300"
             />
           </div>
+
         </form>
       </div>
     </div>
@@ -235,6 +236,7 @@
           'calculator',
           function (data) {
             console.log(data)
+            console.log(risk_score)
             /**
              * The object bellow is the Observation instance that will be sent back to Cicero
              **/
@@ -242,7 +244,7 @@
             const observation = {
               text: {
                 status: "generated",
-                div: `<span>${data.total_risk_score}</span>`,
+                div: `<span xmlns='http://www.w3.org/1999/xhtml'>${data.total_risk_score}</span>`,
               },
               resourceType: 'Observation',
               code: {
@@ -256,7 +258,7 @@
                 ],
               },
               valueQuantity: {
-                value: data.total_risk_score,
+                value: risk_score,
                 unit: 'points',
                 code: '281850001',
                 system: 'http://snomed.info/sct',

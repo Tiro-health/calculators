@@ -19,404 +19,256 @@
 
         <form
           id="calculator"
-          class="rounded-md space-y-8 divide-y-1"
+          class="rounded-md"
           oninput="
-        risk_score= parseInt(A1.value)+
-                    parseInt(A2.value)+
-                    parseInt(A3.value)+
-                    parseInt(A4.value)+
-                    parseInt(A5.value)+
-                    parseInt(B6.value)+
-                    parseInt(B7.value)+
-                    parseInt(B8.value)+
-                    parseInt(C9.value)+
-                    parseInt(C10.value)+
-                    parseInt(C11.value)+
-                    parseInt(C12.value)+
-                    parseInt(C13.value)+
-                    parseInt(D14.value)+
-                    parseInt(D15.value)+
-                    parseInt(D16.value)+
-                    parseInt(D17.value)+
-                    parseInt(D18.value)
+        risk_score= parseInt(food_intake.value)+
+                    parseInt(weight.value)+
+                    parseInt(mobility.value)+
+                    parseInt(neuro.value)+
+                    parseInt(bmi.value)+
+                    parseInt(status.value)+
+                    parseInt(age.value)
+        console.log(risk_score)
 
         if(isNaN(risk_score)){total_risk_score.value = '... points'}
-          else if (risk_score=='1'){total_risk_score.value = risk_score + ' point'}
+          else if (risk_score==1){total_risk_score.value = risk_score + ' point'}
           else{total_risk_score.value = risk_score + ' points'}
-        if (isNaN(risk_score)){cadidate_rating.value = 'Please fill in all questions'}
-          else if (risk_score<='6'){cadidate_rating.value = 'Excellent: List without reservation'}
-          else if (risk_score<='20'){cadidate_rating.value = 'Good: List, although monitoring of identified risk factors may be required'}
-          else if (risk_score<='39'){cadidate_rating.value = 'Minimally acceptable candidate: List under certain conditions. Identified risk factors must be satisfactorily addressed before representing'}
-          else if (risk_score<='68'){cadidate_rating.value = 'High risk: Defer listing while indentified risks are satisfactorily addressed'}
-          else if (risk_score>='69'){cadidate_rating.value = 'Poor: Listing not recommended while identified risk factors present'}
-          else{cadidate_rating.value = ''}         
+        if (isNaN(risk_score)){recommendation.value = 'Please fill in all questions'}
+          else if (risk_score<=14){recommendation.value = 'Full geriatric evaluation'}
+          else if (risk_score>14){recommendation.value = 'Full geriatric evaluation not necessary'}
+          else{recommendation.value = ''}         
         "
         >
-          <div class="space-y-1">
-            <label class="block text-base sm:text-sm font-bold text-gray-700">
-              (A) PATIENT'S READINESS LEVEL and ILLNESS MANAGEMENT (0-24)
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              Identifies elderly cancer patients who could benefit from
+              comprehensive geriatric assessment (CGA) (
+
+              <a
+                href="https://www.mdcalc.com/calc/10426/g8-geriatric-screening-tool#evidence"
+                >source</a
+              >)
             </label>
-            <div>
-              <label
-                class="block text-base sm:text-sm font-medium text-gray-700"
-              >
-                Item 1: Knowledge and understanding of medical illness process
-                (that caused specific organ failure)
-              </label>
-              <input
-                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
-                type="number"
-                name="A1"
-                min="0"
-                max="4"
-                value="0"
-              />
-            </div>
-
-            <div>
-              <label
-                class="block text-base sm:text-sm font-medium text-gray-700"
-              >
-                Item 2: Knowledge and understanding of the process of
-                transplantation
-              </label>
-              <input
-                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
-                type="number"
-                name="A2"
-                min="0"
-                max="4"
-                value="0"
-              />
-            </div>
-
-            <div>
-              <label
-                class="block text-base sm:text-sm font-medium text-gray-700"
-              >
-                Item 3: Willingness/desire for treatment (transplant)
-              </label>
-              <input
-                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
-                type="number"
-                name="A3"
-                min="0"
-                max="4"
-                value="0"
-              />
-            </div>
-
-            <div>
-              <label
-                class="block text-base sm:text-sm font-medium text-gray-700"
-              >
-                Item 4: History of treatment adherence/compliance (pertinent to
-                medical issues)
-              </label>
-              <input
-                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
-                type="number"
-                name="A4"
-                min="0"
-                max="8"
-                value="0"
-              />
-            </div>
-
-            <div>
-              <label
-                class="block text-base sm:text-sm font-medium text-gray-700"
-              >
-                Item 5: Lifestyle factors (including diet, exercise, fluid
-                restrictions, and habits according to organ system)
-              </label>
-              <input
-                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
-                type="number"
-                name="A5"
-                min="0"
-                max="4"
-                value="0"
-              />
-            </div>
           </div>
-          <div class="space-y-1">
-            <label class="block text-base sm:text-sm font-bold text-gray-700">
-              (B) SOCIAL SUPPORT SYSTEM LEVEL OF READINESS (3 items)
+          <p>&nbsp;</p>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              Has food intake declined over the past 3 months due to loss of
+              appetite, digestive problems, chewing, or swallowing difficulties?
             </label>
-            <div>
-              <label
-                class="block text-base sm:text-sm font-medium text-gray-700"
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="food_intake"
+              value="0"
+            >
+              <option selected="selected" value="2"
+                >No decrease in food intake (+2)</option
               >
-                Item 6: Availability of social support system
-              </label>
-              <input
-                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
-                type="number"
-                name="B6"
-                min="0"
-                max="8"
-                value="0"
-              />
-            </div>
-
-            <div>
-              <label
-                class="block text-base sm:text-sm font-medium text-gray-700"
-              >
-                Item 7: Functionality of social support system
-              </label>
-              <input
-                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
-                type="number"
-                name="B7"
-                min="0"
-                max="8"
-                value="0"
-              />
-            </div>
-
-            <div class="space-y-1">
-              <label
-                class="block text-base sm:text-sm font-medium text-gray-700"
-              >
-                Item 8: Appropriateness of physical living space and environment
-              </label>
-              <input
-                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
-                type="number"
-                name="B8"
-                min="0"
-                max="4"
-                value="0"
-              />
-            </div>
+              <option value="1">Moderate decrease in food intake (+1)</option>
+              <option value="0">Severe decrease in food intake (+0)</option>
+            </select>
           </div>
-          <div class="space-y-1">
-            <label class="block text-base sm:text-sm font-bold text-gray-700">
-              (C) PSYCHOLOGICAL STABILITY AND PSYCHOPATHOLOGY (5 items)
+          <p>&nbsp;</p>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              Weight loss during the last 3 months (kg):
             </label>
-            <div>
-              <label
-                class="block text-base sm:text-sm font-medium text-gray-700"
-              >
-                Item 9: Presence of psychopathology (other than personality
-                disorders and organic psychopathology)
-              </label>
-              <input
-                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
-                type="number"
-                name="C9"
-                min="0"
-                max="8"
-                value="0"
-              />
-            </div>
-            <div>
-              <label
-                class="block text-base sm:text-sm font-medium text-gray-700"
-              >
-                Item 10: History of organic psychopathology or neurocognitive
-                impairment (i.e., illness or medication-induced psychopathology)
-              </label>
-              <input
-                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
-                type="number"
-                name="C10"
-                min="0"
-                max="5"
-                value="0"
-              />
-            </div>
-            <div>
-              <label
-                class="block text-base sm:text-sm font-medium text-gray-700"
-              >
-                Item 11: Influence of personality traits vs. disorder
-              </label>
-              <input
-                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
-                type="number"
-                name="C11"
-                min="0"
-                max="4"
-                value="0"
-              />
-            </div>
-            <div>
-              <label
-                class="block text-base sm:text-sm font-medium text-gray-700"
-              >
-                Item 12: Effect of truthfulness vs. deceptive behavior
-              </label>
-              <input
-                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
-                type="number"
-                name="C12"
-                min="0"
-                max="8"
-                value="0"
-              />
-            </div>
-            <div>
-              <label
-                class="block text-base sm:text-sm font-medium text-gray-700"
-              >
-                Item 13: Overall risk for psychopathology
-              </label>
-              <input
-                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
-                type="number"
-                name="C13"
-                min="0"
-                max="4"
-                value="0"
-              />
-            </div>
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="weight"
+              value="0"
+            >
+              <option selected="selected" value="3">No weight loss (+3)</option>
+              <option value="2">1-3 kg (+2) </option>
+              <option value="0">>3 kg (+0)</option>
+              <option value="1">Does not know (+1) </option>
+            </select>
           </div>
-          <div class="space-y-1">
-            <label class="block text-base sm:text-sm font-bold text-gray-700">
-              (D) LIFESTYLE AND EFFECT OF SUBSTANCE USE (5 items)
+          <p>&nbsp;</p>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              Mobility
             </label>
-            <div>
-              <label
-                class="block text-base sm:text-sm font-medium text-gray-700"
-              >
-                Item 14: Alcohol use, abuse, and dependence
-              </label>
-              <input
-                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
-                type="number"
-                name="D14"
-                min="0"
-                max="8"
-                value="0"
-              />
-            </div>
-
-            <div>
-              <label
-                class="block text-base sm:text-sm font-medium text-gray-700"
-              >
-                Item 15: Alcohol abuse - risk for recidivism
-              </label>
-              <input
-                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
-                type="number"
-                name="D15"
-                min="0"
-                max="4"
-                value="0"
-              />
-            </div>
-
-            <div>
-              <label
-                class="block text-base sm:text-sm font-medium text-gray-700"
-              >
-                Item 16: Illicit substance, abuse and dependence
-              </label>
-              <input
-                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
-                type="number"
-                name="D16"
-                min="0"
-                max="8"
-                value="0"
-              />
-            </div>
-
-            <div>
-              <label
-                class="block text-base sm:text-sm font-medium text-gray-700"
-              >
-                Item 17: Illicit substance abuse - risk for recidivism
-              </label>
-              <input
-                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
-                type="number"
-                name="D17"
-                min="0"
-                max="4"
-                value="0"
-              />
-            </div>
-
-            <div>
-              <label
-                class="block text-base sm:text-sm font-medium text-gray-700"
-              >
-                Item 18: Nicotine use, abuse, and dependence
-              </label>
-              <input
-                class="block shadow-sm sm:text-sm border-gray-300 rounded-md px-2 py-1"
-                type="number"
-                name="D18"
-                min="0"
-                max="5"
-                value="0"
-              />
-            </div>
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="mobility"
+              value="0"
+            >
+              <option selected="selected" value="3">No weight loss (+3)</option>
+              <option value="2">1-3 kg (+2) </option>
+              <option value="0">>3 kg (+0)</option>
+              <option value="1">Does not know (+1) </option>
+            </select>
           </div>
-          <div class="space-y-2">
-            <div class="block">
-              <label class="block font-bold text-gray-700"
-                >TOTAL RISK SCORE</label
+          <p>&nbsp;</p>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              Neuropsychological conditions:
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="neuro"
+              value="0"
+            >
+              <option selected="selected" value="2"
+                >No psychological conditions (+2)</option
               >
-              <output
-                name="total_risk_score"
-                class="block mt-2 w-fit text-2xl text-center items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-blue-700 bg-indigo-50 hover:bg-indigo-300"
-              />
-            </div>
-            <div class="block">
-              <label class="block font-bold text-gray-700"></label>
-              <output
-                name="cadidate_rating"
-                class="block w-fit text-2xl text-center items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-blue-700 bg-indigo-50 hover:bg-indigo-300"
-              />
-            </div>
+              <option value="1">Mild dementia (+1) </option>
+              <option value="0">>Severe dementia or depression (+0)</option>
+            </select>
+          </div>
+          <p>&nbsp;</p>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              Body mass index (BMI) (kg/m2):
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="bmi"
+              value="0"
+            >
+              <option selected="selected"></option>
+              <option value="0"><19 kg/m2 (+0) </option>
+              <option value="1">>19 to <21 kg/m2 (+1) </option>
+              <option value="2">21 to <23 kg/m2 (+2) </option>
+              <option value="3">≥23 kg/m2 (+3) </option>
+            </select>
+          </div>
+          <p>&nbsp;</p>
+
+          <div class="mt-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              Takes more than three prescription drugs per day:
+            </label>
+            <input
+              class="rounded text-blue-700"
+              type="radio"
+              name="drugs"
+              value="1"
+            /><label class="mx-1">No</label>
+            <input
+              class="rounded text-blue-700"
+              type="radio"
+              name="drugs"
+              value="1"
+              checked="checked"
+            /><label class="mx-1">Yes</label>
+          </div>
+          <p>&nbsp;</p>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              In comparison with other people of the same age, how does the
+              patient consider their health status?
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="status"
+              value="0"
+            >
+              <option selected="selected"></option>
+              <option value="0">Not as good (+0) </option>
+              <option value="0.5">Doest not know (+0.5)</option>
+              <option value="1">As good (+1) </option>
+              <option value="2">Better (+2) </option>
+            </select>
+          </div>
+          <p>&nbsp;</p>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              Age (years):
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="age"
+              value="0"
+            >
+              <option selected="selected"></option>
+              <option value="0">>85 (+0) </option>
+              <option value="1">80-85 (+1) </option>
+              <option value="2"><80 (+2) </option>
+            </select>
+          </div>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2"></div>
+
+          <p>&nbsp;</p>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2 block">
+            <label class="block font-bold text-gray-700"
+              >TOTAL RISK SCORE</label
+            >
+
+            <p>&nbsp;</p>
+            <output
+              name="total_risk_score"
+              class="block w-fit text-2xl text-center items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-blue-700 bg-indigo-50 hover:bg-indigo-300"
+            />
+          </div>
+
+          <p>&nbsp;</p>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2 block">
+            <label class="block font-bold text-gray-700"></label>
+            <output
+              name="recommendation"
+              class="block w-fit text-2xl text-center items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-blue-700 bg-indigo-50 hover:bg-indigo-300"
+            />
           </div>
         </form>
       </div>
     </div>
     <script>
       $(document).ready(function () {
-        console.debug("1. Connecting calculator...");
+        console.debug('1. Connecting calculator...');
         makeCalculatorV3(
-          "calculator",
+          'calculator',
           function (data) {
             /**
              * The object bellow is the Observation instance that will be sent back to Cicero
              **/
+
             const observation = {
               text: {
                 status: "generated",
-                div: `<span>${data.total_risk_score}</span>`,
+                div: `<span xmlns='http://www.w3.org/1999/xhtml'>${risk_score}</span>`,
+
+                div: total_risk_score,
               },
-              resourceType: "Observation",
+              resourceType: 'Observation',
               code: {
-                text: "Geriatische screening",
+                text: 'Geriatische screening',
                 coding: [
                   {
-                    display: "Geriatische screening",
-                    code: "urn:uuid:0431f778-0d05-4f78-92c3-84835b7de950",
-                    system: "http://tiro.health/fhir/CodeSystem/auto-generated",
+                    display: 'Geriatische screening',
+                    code: 'urn:uuid:0431f778-0d05-4f78-92c3-84835b7de950',
+                    system: 'http://tiro.health/fhir/CodeSystem/auto-generated',
                   },
                 ],
               },
               valueQuantity: {
-                value: risk_score,
-                unit: "points",
-                code: "281850001",
-                system: "http://snomed.info/sct",
+                value: total_risk_score,
+                unit: 'points',
+                code: '281850001',
+                system: 'http://snomed.info/sct',
               },
             };
-            console.log(observation);
+            console.debug(observation);
             return observation;
           },
-          { autoSave: true }
+          { autoSave: true },
         );
-        console.debug("2. Calculator setup done.");
+        console.debug('2. Calculator setup done.');
       });
     </script>
   </body>

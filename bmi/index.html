@@ -77,29 +77,48 @@
     </div>
     <script>
       console.debug("1. Connecting calculator...");
-      makeCalculator(
-        "calculator",
-        function (input, output) {
-          /**
-           * The object bellow is the Observation instance that will be sent back to Cicero
-           */
-          const observation = {
-            resourceType: "Observation",
-            code: {
-              text: "BMI"
+      makeCalculatorV3(
+          "calculator",
+          function (data) {
+            /**
+             * The object bellow is the Observation instance that will be sent back to Cicero
+             **/
+            const observation = {
+              text: {
+                status: "generated",
+                div: parseFloat(output.value),
+              },
+              resourceType: "Observation",
+              code: 
+            {
+              text: "BMI",
+              coding:
+                [
+                  {
+                    system: "http://snomed.info/sct",
+                    code: "60621009",
+                    display: "body mass index",
+                    userSelected: true,
+                  },
+                  {
+                    code: "observable-entity",
+                    display: "Observable Entity",
+                    system: "http://tiro.health/fhir/CodeSystem/semantic-axes",
+                  },
+                ],
             },
             valueQuantity: {
               value: parseFloat(output.value),
               unit: "kg/m²",
               code: "kg/m2",
               system: "http://unitsofmeasure.org"
-            }
-          };
-
-          return observation;
-        },
-        { autoSave: true }
-      );
+              },
+            };
+            console.log(observation);
+            return observation;
+          },
+          { autoSave: true }
+        );
       console.debug("2. Calculator setup done.");
     </script>
   </body>

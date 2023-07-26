@@ -3,7 +3,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
     <script src="../makeCalculator.js"></script>
-    <title>Geriatric Screening</title>
+    <title>BMI</title>
     <meta charset="UTF-8" />
   </head>
   <body>
@@ -83,10 +83,11 @@
             /**
              * The object bellow is the Observation instance that will be sent back to Cicero
              **/
+            console.log(data)
             const observation = {
               text: {
                 status: "generated",
-                div: parseFloat(output.value),
+                div: parseFloat(calc),
               },
               resourceType: "Observation",
               code: 
@@ -108,7 +109,7 @@
                 ],
             },
             valueQuantity: {
-              value: parseFloat(output.value),
+              value: parseFloat(calc),
               unit: "kg/m²",
               code: "kg/m2",
               system: "http://unitsofmeasure.org"

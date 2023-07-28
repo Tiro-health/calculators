@@ -405,13 +405,20 @@
     <script>
       $(document).ready(function () {
         console.debug('1. Connecting calculator...');
-        makeCalculatorV2(
+        makeCalculatorV3(
           'calculator',
           function (data) {
             /**
              * The object bellow is the Observation instance that will be sent back to Cicero
              **/
-            const observation = {
+            console.log(data)
+            console.log(nihss_score)
+            
+             const observation = {
+              text: {
+                status: "generated",
+                div: `<span xmlns='http://www.w3.org/1999/xhtml'>${data.nihss}</span>`,
+              },
               resourceType: 'Observation',
               code: {
                 text: 'NIHSS',

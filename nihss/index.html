@@ -411,10 +411,7 @@
             /**
              * The object bellow is the Observation instance that will be sent back to Cicero
              **/
-            console.log(data)
-            console.log(nihss_score)
-            
-             const observation = {
+            const observation = {
               text: {
                 status: "generated",
                 div: `<span xmlns='http://www.w3.org/1999/xhtml'>${data.nihss}</span>`,
@@ -437,7 +434,7 @@
                 system: 'http://snomed.info/sct',
               },
             };
-            console.debug(observation);
+            console.log(observation);
             return observation;
           },
           { autoSave: true },

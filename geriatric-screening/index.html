@@ -28,6 +28,7 @@
                     parseInt(bmi.value)+
                     parseInt(status.value)+
                     parseInt(age.value)
+        risk_score= parseInt(risk_score)    
         console.log(risk_score)
 
         if(isNaN(risk_score)){total_risk_score.value = '... points'}
@@ -256,7 +257,7 @@
               },
               valueQuantity: {
                 value: risk_score,
-                unit: 'points',
+                unit: 'punten',
                 code: '281850001',
                 system: 'http://snomed.info/sct',
               },

@@ -11,7 +11,7 @@
       <div class="sm:max-w-md w-full space-y-8">
         <div>
           <h1 class="mt-6 text-center text-3xl font-bold text-blue-700">
-            Thyroid Nodule Assessment
+            ACR TI-RADS
           </h1>
         </div>
 
@@ -164,16 +164,16 @@
             const observation = {
               text: {
                 status: 'generated',
-                div: `<span xmlns='http://www.w3.org/1999/xhtml'>${data.result}</span>`,
+                div: `<span xmlns='http://www.w3.org/1999/xhtml'>${data.recommendation}</span>`,
               },
               resourceType: 'Observation',
               code: {
                 text: 'Total Score',
                 coding: [
                   {
-                    display: 'Thyroid Nodule Assessment',
-                    code: '840352000',
-                    system: 'http://snomed.info/sct',
+                    display: 'ACR TI-RADS',
+                    code: '7fc7f5b0-8ad3-11ee-b9d1-0242ac120002',
+                    system: "http://tiro.health/fhir/CodeSystem/auto-generated",
                   },
                 ],
               },

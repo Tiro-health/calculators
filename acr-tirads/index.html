@@ -44,7 +44,7 @@
             else if (total_score==2){recommendation.value = 'TR2 Not suspicious: no FNA'}
             else if (total_score==3){recommendation.value = 'TR3 Mildly suspicious: FNA if ≥  2.5cm, Follow if ≥ 1.5cm'}
             else if (total_score<=6){recommendation.value = 'TR4 Moderately suspicious: FNA if ≥  1.5cm, Follow if ≥ 1cm' }
-            else if (total_score>=7){recommendation.value = 'Full Mildly suspicious: FNA if ≥  1cm, Follow if ≥ 0.5cm'}
+            else if (total_score>=7){recommendation.value = 'TR5 Full Mildly suspicious: FNA if ≥  1cm, Follow if ≥ 0.5cm'}
             else{recommendation.value = ''}         
           "
         >
@@ -59,9 +59,9 @@
               value="0"
             >
               <option value="0">Cystic of bijna volledig cystisch (0)</option>
-              <option value="1">Spongivorm (0 points)</option>
-              <option value="2">Gemengd cystisch en vast (1)</option>
-              <option value="3">(Bijna volledig) vast (2)</option>
+              <option value="0">Spongivorm (0)</option>
+              <option value="1">Gemengd cystisch en vast (1)</option>
+              <option value="2">(Bijna volledig) vast (2)</option>
             </select>
           </div>
 

@@ -1,0 +1,196 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <script src="../makeCalculator.js"></script>
+    <title>ACR TI-RADS</title>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <div class="min-h-full flex items-center justify-center py-12 px-10 sm:px-6 lg:px-8">
+      <div class="sm:max-w-md w-full space-y-8">
+        <div>
+          <h1 class="mt-6 text-center text-3xl font-bold text-blue-700">
+            Thyroid Nodule Assessment
+          </h1>
+        </div>
+
+        <form
+          id="calculator"
+          class="rounded-md"
+          oninput="
+            compositie_score = parseInt(compositie.value);
+            echogeniciteit_score = parseInt(echogeniciteit.value);
+            vorm_score = parseInt(vorm.value);
+            aflijning_score = parseInt(aflijning.value);
+            echogene_foci_score = parseInt(echogene_foci.value);
+
+            total_score =
+              compositie_score +
+              echogeniciteit_score +
+              vorm_score +
+              aflijning_score +
+              echogene_foci_score;
+
+            if (isNaN(total_score)) {
+              result.value = '... punten';
+            } else if (total_score === 1 || total_score === 0) {
+              result.value = total_score + ' punt';
+            } else {
+              result.value = total_score + ' punten';
+            }
+            if (isNaN(total_score)){recommendation.value = 'Please fill in all questions'}
+            else if (total_score==0){recommendation.value = 'TR1 Benign: FNA '}
+            else if (total_score==2){recommendation.value = 'TR2 Not suspicious: no FNA'}
+            else if (total_score==3){recommendation.value = 'TR3 Mildly suspicious: FNA if ≥  2.5cm, Follow if ≥ 1.5cm'}
+            else if (total_score<=6){recommendation.value = 'TR4 Moderately suspicious: FNA if ≥  1.5cm, Follow if ≥ 1cm' }
+            else if (total_score>=7){recommendation.value = 'Full Mildly suspicious: FNA if ≥  1cm, Follow if ≥ 0.5cm'}
+            else{recommendation.value = ''}         
+          "
+        >
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block font-bold text-gray-700">
+              Compositie
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="compositie"
+              value="0"
+            >
+              <option value="0">Cystic of bijna volledig cystisch (0)</option>
+              <option value="1">Spongivorm (0 points)</option>
+              <option value="2">Gemengd cystisch en vast (1)</option>
+              <option value="3">(Bijna volledig) vast (2)</option>
+            </select>
+          </div>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block font-bold text-gray-700">
+              Echogeniciteit
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="echogeniciteit"
+              value="0"
+            >
+              <option value="0">Anechogeen (0)</option>
+              <option value="1">Hyperechoïsch of iso-echoïsch (1)</option>
+              <option value="2">Hypo-echoïsch (2)</option>
+              <option value="3">Zeer hypo-echoïsch (3)</option>
+            </select>
+          </div>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block font-bold text-gray-700">
+              Vorm
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="vorm"
+              value="0"
+            >
+              <option value="0">Breder dan diep (0)</option>
+              <option value="3">Hoger dan breed (3)</option>
+            </select>
+          </div>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block font-bold text-gray-700">
+              Aflijning
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="aflijning"
+              value="0"
+            >
+              <option value="0">Effen (0 points)</option>
+              <option value="0">Onscherp (0 points)</option>
+              <option value="2">Gelobd of onregelmatig (2)</option>
+              <option value="3">Extra-thyroidale extensie (3)</option>
+            </select>
+          </div>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block font-bold text-gray-700">
+              Echogene Foci
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
+              as="select"
+              name="echogene_foci"
+              value="0"
+            >
+              <option value="0">Geen (0)</option>
+              <option value="0">Grote comet-tail artefacten (0)</option>
+              <option value="1">Macroverkalkingen (1)</option>
+              <option value="2">Perifere (rim) verkalkingen (2)</option>
+              <option value="3">Punctiforme echogene foci (3)</option>
+            </select>
+          </div>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2 block">
+            <label class="block font-bold text-gray-700">
+              Total Score
+            </label>
+            <output
+              name="result"
+              class="block w-fit text-2xl text-center items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-blue-700 bg-indigo-50 hover:bg-indigo-300"
+            />
+          </div>
+          <p>&nbsp;</p>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2 block">
+            <label class="block font-bold text-gray-700"></label>
+            <output
+              name="recommendation"
+              class="block w-fit text-2xl text-center items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-blue-700 bg-indigo-50 hover:bg-indigo-300"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function () {
+        console.debug('1. Connecting calculator...');
+        makeCalculatorV3(
+          'calculator',
+          function (data) {
+            /**
+             * The object bellow is the Observation instance that will be sent back to Cicero
+             **/
+            const observation = {
+              text: {
+                status: 'generated',
+                div: `<span xmlns='http://www.w3.org/1999/xhtml'>${data.result}</span>`,
+              },
+              resourceType: 'Observation',
+              code: {
+                text: 'Total Score',
+                coding: [
+                  {
+                    display: 'Thyroid Nodule Assessment',
+                    code: '840352000',
+                    system: 'http://snomed.info/sct',
+                  },
+                ],
+              },
+              valueQuantity: {
+                value: total_score,
+                unit: 'points',
+                code: '281850001',
+                system: 'http://snomed.info/sct',
+              },
+            };
+            console.debug(observation);
+            return observation;
+          },
+          { autoSave: true },
+        );
+        console.debug('2. Calculator setup done.');
+      });
+    </script>
+  </body>
+</html>

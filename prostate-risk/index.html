@@ -12,7 +12,7 @@
     >
       <div class="max-w-md w-full space-y-8">
         <div class="flex items-center justify-center">
-          <img src="TIRO_logo_short.png" alt="TIRO Logo" class="mr-2" /> <!-- Add image here -->
+          <img src="TIRO_logo.png" alt="TIRO Logo" class="mr-2" width="50" height="50" />
           <h1 class="mt-6 text-center text-3xl font-bold text-blue-700">
             Prostate Risk Calculator
           </h1>
@@ -58,9 +58,88 @@
               result.value = logit_p;
             }
           "
+        //first version
+        //logit_p = (-4.05 + 0.05 * age.value - 0.76 * nrroi.value + 1.27 * pirads.value - 0.094 * zone.value - 0.01 * vol.value + 4.87 * (psa.value/vol.value)).toFixed(2);
+        //if (isNaN(logit_p)) {
+        //  result.value = 'Invalid Input';
+        //} else {
+        //  result.value = 'Logit (p): ' + logit_p;
+        //}
+      "
         >
-          <!-- Rest of your form elements remain unchanged -->
-
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-sm font-medium text-gray-700">
+              Age (years):
+            </label>
+            <input
+              class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
+              type="number"
+              name="age"
+              min="0"
+            />
+          </div>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-sm font-medium text-gray-700">
+              Number of Regions of Interest:
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
+              name="nrroi"
+            >
+              <option value="0">One</option>
+              <option value="1">Multiple</option>
+            </select>
+          </div>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-sm font-medium text-gray-700">
+              PIRADScore:
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
+              name="pirads"
+            >
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-sm font-medium text-gray-700">
+              Prostate Zone:
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
+              name="zone"
+              id="zone"
+            >
+              <option value="0">Peripheral</option>
+              <option value="1">Transition</option>
+            </select>
+          </div>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-sm font-medium text-gray-700">
+              PSA Value (ng/ml):
+            </label>
+            <input
+              class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
+              type="number"
+              name="psa"
+              min="0"
+            />
+          </div>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-sm font-medium text-gray-700">
+              Prostate Volume on MRI (ml):
+            </label>
+            <input
+              class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
+              type="number"
+              name="vol"
+              min="0"
+            />
+          </div>
           <div class="col-span-6 sm:col-span-3 lg:col-span-2 block">
             <label for="result" class="block font-bold text-gray-700">
               Result:

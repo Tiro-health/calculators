@@ -1,0 +1,110 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <script src="../makeCalculator.js"></script>
+    <title>TNM stage</title>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <div
+      class="min-h-full flex items-center justify-center py-12 px-10 sm:px-6 lg:px-8"
+    >
+      <div class="sm:max-w-md w-full space-y-8">
+        <div>
+          <h1 class="mt-6 text-center text-3xl font-bold text-blue-700">
+            TNM stage
+          </h1>
+        </div>
+
+        <form
+        id="calculator"
+        class="rounded-md"
+        tnm_stage=""
+        oninput="
+          t_stage = '';
+          n_stage = '';
+          m_stage = '';
+          
+          if(isNaN(c_m_stage) || (isNaN(c_m_stage)) || (isNaN(c_m_stage))) {
+            tnm_stage = '';
+          } else {
+            if (n_stage === 'cN0' && t_stage === 'T1a') {
+              tnm_stage = 'IA1';
+            } else if (n_stage === 'cN0' && t_stage === 'T1b') {
+              tnm_stage = 'IA2';
+            } else if (n_stage === 'cN0' && t_stage === 'T1c') {
+              tnm_stage = 'IA3';
+            } else if ((n_stage === 'cN0' && t_stage === 'T2b') || (n_stage === 'cN1' && t_stage === 'T1a') || (n_stage === 'cN1' && t_stage === 'T1b') || (n_stage === 'cN1' && t_stage === 'T1c')) {
+              tnm_stage = 'IIA';
+            } else if ((n_stage === 'cN0' && t_stage === 'T2a') || (n_stage === 'cN0' && t_stage === 'T2b')) {
+              tnm_stage = 'IB';
+            } else if ((n_stage === 'cN0' && t_stage === 'T3') || (n_stage === 'cN1' && t_stage === 'T2a') || (n_stage === 'cN1' && t_stage === 'T2b') || (n_stage === 'cN2a' && t_stage === 'T1a') || (n_stage === 'cN2a' && t_stage === 'T1b') || (n_stage === 'cN2a' && t_stage === 'T1c')) {
+              tnm_stage = 'IIB';
+            } else if ((n_stage === 'cN3' && t_stage === 'T1a') || (n_stage === 'cN3' && t_stage === 'T1b') || (n_stage === 'cN3' && t_stage === 'T1c') || (n_stage === 'cN2b' && t_stage === 'T2a') || (n_stage === 'cN2b' && t_stage === 'T2b') || (n_stage === 'cN2b' && t_stage === 'T3') || (n_stage === 'cN2a' && t_stage === 'T4') || (n_stage === 'cN2b' && t_stage === 'T4')) {
+              tnm_stage = 'IIIB';
+            } else if (n_stage === 'cN3' && (t_stage === 'T3' || t_stage === 'T4')) {
+              tnm_stage = 'IIIC';
+            } else if ((n_stage === 'cN0' && t_stage === 'T4') || (n_stage === 'cN1' && t_stage === 'T4') || (n_stage === 'cN1' && t_stage === 'T3') || (n_stage === 'cN2a' && t_stage === 'T3') || (n_stage === 'cN2a' && t_stage === 'T2a') || (n_stage === 'cN2a' && t_stage === 'T2b') || (n_stage === 'cN2b' && t_stage === 'T1c') || (n_stage === 'cN2b' && t_stage === 'T1b') || (n_stage === 'cN2b' && t_stage === 'T1a')) {
+              tnm_stage = 'IIIA';
+            } else if ((n_stage === 'cN0' && c_m_stage === 'cM1a') || (n_stage === 'cN1' && c_m_stage === 'cM1a') || (n_stage === 'cN2a' && c_m_stage === 'cM1a') || (n_stage === 'cN2b' && c_m_stage === 'cM1a') || (n_stage === 'cN3' && c_m_stage === 'cM1a')) {
+              tnm_stage = 'IVA';
+            } else if (c_m_stage === 'cM1a' || c_m_stage === 'cM1b') {
+              tnm_stage = 'IVA';
+            } else if (c_m_stage === 'cM1c1' || c_m_stage === 'cM1c2') {
+              tnm_stage = 'IVB';
+            } else {
+              tnm_stage = 'Stage Unknown';
+            }
+          }
+        "
+      >
+      </form>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function () {
+        console.debug('1. Connecting calculator...');
+        makeCalculatorV3(
+          'calculator',
+          function (data) {
+            /**
+             * The object bellow is the Observation instance that will be sent back to Cicero
+             **/
+            const observation = {
+              text: {
+                status: "generated",
+                div: `<span xmlns='http://www.w3.org/1999/xhtml'>${data.tnm_stage}</span>`,
+              },
+              resourceType: 'Observation',
+              code: {
+                text: "TNM stage",
+                coding: [
+                  {
+                    display: "American Joint Committee on Cancer clinical stage group allowable value",
+                    code: "1222592004",
+                    system: "http://snomed.info/sct",
+                  },
+                ],
+              },
+              valueCodeableConcept:{
+                text: "TNM stage",
+                coding: [
+                  {
+                    display: "American Joint Committee on Cancer clinical stage group allowable value",
+                    code: "1222592004",
+                    system: "http://snomed.info/sct",
+                  },
+                ],
+              },
+            };
+            console.log(observation);
+            return observation;
+          },
+          { autoSave: true },
+        );
+        console.debug('2. Calculator setup done.');
+      });
+    </script>
+  </body>
+</html>

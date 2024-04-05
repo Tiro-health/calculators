@@ -1,12 +1,28 @@
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
-    <title>Prostate Risk Calculator</title>
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <title>Prostate Risk Calculator</title>
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .calculator-container {
+      max-width: 500px;
+      width: 100%;
+      padding: 0 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator-container">
     <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div class="max-w-md w-full space-y-8">
         <!-- Move the image above the title and center it -->
@@ -18,10 +34,8 @@
           <label class="block text-sm font-medium text-gray-700">
             Disclaimer: This calculator is developed for and in collaboration with Dr. Van Baelen (AZ Maria Middelares). It is currently available for demonstration purposes only.
           </label>
-        </div><form
-        id="calculator"
-        class="rounded-md"
-        oninput="
+        </div>
+        <form id="calculator" class="rounded-md" oninput="
           psadt=psa.value/vol.value;
           XAGE = age.value / 100;
           XPSADT = psadt / 0.1;
@@ -54,129 +68,90 @@
           } else {
             result.value = lin_pred;
           }
-
-          //if (isNaN(logit_p)) {
-          //  result.value = 'Invalid Input';
-          //} else {
-          //  result.value = logit_p;
-          //}
-      //first version
-      //logit_p = (-4.05 + 0.05 * age.value - 0.76 * nrroi.value + 1.27 * pirads.value - 0.094 * zone.value - 0.01 * vol.value + 4.87 * (psa.value/vol.value)).toFixed(2);
-      //if (isNaN(logit_p)) {
-      //  result.value = 'Invalid Input';
-      //} else {
-      //  result.value = 'Logit (p): ' + logit_p;
-      //}
-    "
-      >
-        <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-          <label class="block text-sm font-medium text-gray-700">
-            Age (years):
-          </label>
-          <input
-            class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
-            type="number"
-            name="age"
-            min="0"
-          />
-        </div>
-        <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-          <label class="block text-sm font-medium text-gray-700">
-            PIRADScore:
-          </label>
-          <select
-            class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
-            name="pirads"
-          >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        </div>
-        <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-          <label class="block text-sm font-medium text-gray-700">
-            Prostate Zone:
-          </label>
-          <select
-            class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
-            name="zone"
-            id="zone"
-          >
-            <option value="0">Peripheral</option>
-            <option value="1">Transition</option>
-          </select>
-        </div>
-        <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-          <label class="block text-sm font-medium text-gray-700">
-            PSA Value (ng/ml):
-          </label>
-          <input
-            class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
-            type="number"
-            name="psa"
-            min="0"
-          />
-        </div>
-        <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-          <label class="block text-sm font-medium text-gray-700">
-            Prostate Volume on MRI (ml):
-          </label>
-          <input
-            class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md"
-            type="number"
-            name="vol"
-            min="0"
-          />
-        </div>
-        <div class="col-span-6 sm:col-span-3 lg:col-span-2 block">
-          <label for="result" class="block font-bold text-gray-700">
-            Result:
-          </label>
-          <output
-            class="text-2xl inline-flex text-center items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-blue-700 bg-blue-50 hover:bg-blue-300"
-            name="result"
-            form="calculator"
-          >
-            0.00
-          </output>
-        </div>
-      </form>
+      ">
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-sm font-medium text-gray-700">
+              Age (years):
+            </label>
+            <input class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md" type="number" name="age" min="0" />
+          </div>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-sm font-medium text-gray-700">
+              PIRADScore:
+            </label>
+            <select class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md" name="pirads">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-sm font-medium text-gray-700">
+              Prostate Zone:
+            </label>
+            <select class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md" name="zone" id="zone">
+              <option value="0">Peripheral</option>
+              <option value="1">Transition</option>
+            </select>
+          </div>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-sm font-medium text-gray-700">
+              PSA Value (ng/ml):
+            </label>
+            <input class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md" type="number" name="psa" min="0" />
+          </div>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-sm font-medium text-gray-700">
+              Prostate Volume on MRI (ml):
+            </label>
+            <input class="t-1 block shadow-sm sm:text-sm border-gray-300 rounded-md" type="number" name="vol" min="0" />
+          </div>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2 block">
+            <label for="result" class="block font-bold text-gray-700">
+              Result:
+            </label>
+            <output class="text-2xl inline-flex text-center items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-blue-700 bg-blue-50 hover:bg-blue-300" name="result" form="calculator">
+              0.00
+            </output>
+          </div>
+        </form>
       </div>
     </div>
-    <script>
-      $(document).ready(function () {
-        console.debug('1. Connecting calculator...');
-        makeCalculatorV3(
-          'calculator',
-          function (data) {
-            const observation = {
-              resourceType: 'Observation',
-              code: {
-                text: 'Prostate Risk Logit',
-                coding: [
-                  {
-                    display: 'Prostate Risk Logit',
-                    code: 'urn:uuid:your-code-here',
-                    system: 'http://tiro.health/fhir/CodeSystem/auto-generated',
-                  },
-                ],
-              },
-              valueQuantity: {
-                value: parseFloat(logit_p),
-                unit: 'points',
-                code: '281850001',
-                system: 'http://snomed.info/sct',
-              },
-            };
-            console.debug(observation);
-            return observation;
-          },
-          { autoSave: true },
-        );
-        console.debug('2. Calculator setup done.');
-      });
-    </script>
-  </body>
+  </div>
+  <script>
+    $(document).ready(function () {
+      console.debug('1. Connecting calculator...');
+      makeCalculatorV3(
+        'calculator',
+        function (data) {
+          const observation = {
+            resourceType: 'Observation',
+            code: {
+              text: 'Prostate Risk Logit',
+              coding: [
+                {
+                  display: 'Prostate Risk Logit',
+                  code: 'urn:uuid:your-code-here',
+                  system: 'http://tiro.health/fhir/CodeSystem/auto-generated',
+                },
+              ],
+            },
+            valueQuantity: {
+              value: parseFloat(logit_p),
+              unit: 'points',
+              code: '281850001',
+              system: 'http://snomed.info/sct',
+            },
+          };
+          console.debug(observation);
+          return observation;
+        },
+        { autoSave: true },
+      );
+      console.debug('2. Calculator setup done.');
+    });
+  </script>
+</body>
 </html>

@@ -23,7 +23,7 @@
         >
           <div class="mt-2">
             <label class="block text-base sm:text-sm font-medium text-gray-700">
-              I have no other diseases:
+              I have no other diseases other than lung cancer:
             </label>
             <input
               class="rounded text-blue-700"
@@ -80,7 +80,7 @@
 
           <div class="mt-2">
             <label class="block text-base sm:text-sm font-medium text-gray-700">
-              Leg pain when walking due to poor circulation:
+              Pain while walking due to poor blood circulation:
             </label>
             <input
               class="rounded text-blue-700"
@@ -93,6 +93,24 @@
               class="rounded text-blue-700"
               type="radio"
               name="legpain"
+              value="1"
+            /><label class="mx-1">Yes</label>
+          </div>
+          <div class="mt-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              Lung disease (asthma, COPD, ILD etc.):
+            </label>
+            <input
+              class="rounded text-blue-700"
+              type="radio"
+              name="lung_disease"
+              value="0"
+              checked="checked"
+            /><label class="mx-1">No</label>
+            <input
+              class="rounded text-blue-700"
+              type="radio"
+              name="lung_disease"
               value="1"
             /><label class="mx-1">Yes</label>
           </div>
@@ -203,9 +221,68 @@
               name="cancer"
               value="1"
             /><label class="mx-1">Yes</label>
-          <p>&nbsp;</p>
-        </form>
       </div>
+      <div class="mt-2">
+        <label class="block text-base sm:text-sm font-medium text-gray-700">
+          Depression
+        </label>
+        <input
+          class="rounded text-blue-700"
+          type="radio"
+          name="depression"
+          value="0"
+          checked="checked"
+        /><label class="mx-1">No</label>
+        <input
+          class="rounded text-blue-700"
+          type="radio"
+          name="depression"
+          value="1"
+        /><label class="mx-1">Yes</label>
+      </div>
+      <div class="mt-2">
+        <label class="block text-base sm:text-sm font-medium text-gray-700">
+          Arthritis:
+        </label>
+        <input
+          class="rounded text-blue-700"
+          type="radio"
+          name="nervous"
+          value="0"
+          checked="checked"
+        /><label class="mx-1">No</label>
+        <input
+          class="rounded text-blue-700"
+          type="radio"
+          name="nervous"
+          value="1"
+        /><label class="mx-1">Yes</label>
+      </div>
+      <div class="mt-2">
+        <label class="block text-base sm:text-sm font-medium text-gray-700">Other specification:
+        </label>
+        <input type="text" class="rounded text-blue-700" name="other_specification">
+    
+        <p>&nbsp;</p>
+      </div>
+      <div class="mt-2">
+        <label class="block text-base sm:text-sm font-medium text-gray-700">What is the primary treatment design?</label>
+        <div class="mt-2">
+          <input class="rounded text-blue-700" type="radio" name="treatment_design" value="Curative/radical" checked="checked" /><label class="mx-1">Curative/radical</label>
+        </div>
+        <div class="mt-2">
+          <input class="rounded text-blue-700" type="radio" name="treatment_design" value="Palliative (including SABR oligometastases)" /><label class="mx-1">Palliative (including SABR oligometastases)</label>
+        </div>
+        <div class="mt-2">
+          <input class="rounded text-blue-700" type="radio" name="treatment_design" value="Active follow-up" /><label class="mx-1">Active follow-up</label>
+        </div>
+        <div class="mt-2">
+          <input class="rounded text-blue-700" type="radio" name="treatment_design" value="Unknown" /><label class="mx-1">Unknown</label>
+        </div>
+        <p>&nbsp;</p>
+      </div>
+
+    </form>
     </div>
     <script>
       $(document).ready(function () {

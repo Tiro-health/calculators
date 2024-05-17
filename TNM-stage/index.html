@@ -18,92 +18,261 @@
         </div>
 
         <form
-        id="calculator"
-        class="rounded-md"
-        tnm_stage=""
-        oninput="
-          t_stage = '';
-          n_stage = '';
-          m_stage = '';
+          id="calculator"
+          class="rounded-md mx-auto w-fit"
+          oninput="
+          t_stage = t_stage ?? '';
+          n_stage = n_stage ?? '';
+          m_stage = m_stage ?? '';
           
-          if(isNaN(c_m_stage) || (isNaN(c_m_stage)) || (isNaN(c_m_stage))) {
-            tnm_stage = '';
+          if(!t_stage || !n_stage || !m_stage){
+            tnm_stage.value = 'No result';
           } else {
             if (n_stage === 'cN0' && t_stage === 'T1a') {
-              tnm_stage = 'IA1';
+              tnm_stage.value = 'IA1';
             } else if (n_stage === 'cN0' && t_stage === 'T1b') {
-              tnm_stage = 'IA2';
+              tnm_stage.value = 'IA2';
             } else if (n_stage === 'cN0' && t_stage === 'T1c') {
-              tnm_stage = 'IA3';
+              tnm_stage.value = 'IA3';
             } else if ((n_stage === 'cN0' && t_stage === 'T2b') || (n_stage === 'cN1' && t_stage === 'T1a') || (n_stage === 'cN1' && t_stage === 'T1b') || (n_stage === 'cN1' && t_stage === 'T1c')) {
-              tnm_stage = 'IIA';
+              tnm_stage.value = 'IIA';
             } else if ((n_stage === 'cN0' && t_stage === 'T2a') || (n_stage === 'cN0' && t_stage === 'T2b')) {
-              tnm_stage = 'IB';
+              tnm_stage.value = 'IB';
             } else if ((n_stage === 'cN0' && t_stage === 'T3') || (n_stage === 'cN1' && t_stage === 'T2a') || (n_stage === 'cN1' && t_stage === 'T2b') || (n_stage === 'cN2a' && t_stage === 'T1a') || (n_stage === 'cN2a' && t_stage === 'T1b') || (n_stage === 'cN2a' && t_stage === 'T1c')) {
-              tnm_stage = 'IIB';
+              tnm_stage.value = 'IIB';
             } else if ((n_stage === 'cN3' && t_stage === 'T1a') || (n_stage === 'cN3' && t_stage === 'T1b') || (n_stage === 'cN3' && t_stage === 'T1c') || (n_stage === 'cN2b' && t_stage === 'T2a') || (n_stage === 'cN2b' && t_stage === 'T2b') || (n_stage === 'cN2b' && t_stage === 'T3') || (n_stage === 'cN2a' && t_stage === 'T4') || (n_stage === 'cN2b' && t_stage === 'T4')) {
-              tnm_stage = 'IIIB';
+              tnm_stage.value = 'IIIB';
             } else if (n_stage === 'cN3' && (t_stage === 'T3' || t_stage === 'T4')) {
-              tnm_stage = 'IIIC';
+              tnm_stage.value = 'IIIC';
             } else if ((n_stage === 'cN0' && t_stage === 'T4') || (n_stage === 'cN1' && t_stage === 'T4') || (n_stage === 'cN1' && t_stage === 'T3') || (n_stage === 'cN2a' && t_stage === 'T3') || (n_stage === 'cN2a' && t_stage === 'T2a') || (n_stage === 'cN2a' && t_stage === 'T2b') || (n_stage === 'cN2b' && t_stage === 'T1c') || (n_stage === 'cN2b' && t_stage === 'T1b') || (n_stage === 'cN2b' && t_stage === 'T1a')) {
-              tnm_stage = 'IIIA';
-            } else if ((n_stage === 'cN0' && c_m_stage === 'cM1a') || (n_stage === 'cN1' && c_m_stage === 'cM1a') || (n_stage === 'cN2a' && c_m_stage === 'cM1a') || (n_stage === 'cN2b' && c_m_stage === 'cM1a') || (n_stage === 'cN3' && c_m_stage === 'cM1a')) {
-              tnm_stage = 'IVA';
-            } else if (c_m_stage === 'cM1a' || c_m_stage === 'cM1b') {
-              tnm_stage = 'IVA';
-            } else if (c_m_stage === 'cM1c1' || c_m_stage === 'cM1c2') {
-              tnm_stage = 'IVB';
+              tnm_stage.value = 'IIIA';
+            } else if ((n_stage === 'cN0' && m_stage === 'cM1a') || (n_stage === 'cN1' && m_stage === 'cM1a') || (n_stage === 'cN2a' && m_stage === 'cM1a') || (n_stage === 'cN2b' && m_stage === 'cM1a') || (n_stage === 'cN3' && m_stage === 'cM1a')) {
+              tnm_stage.value = 'IVA';
+            } else if (m_stage === 'cM1a' || m_stage === 'cM1b') {
+              tnm_stage.value = 'IVA';
+            } else if (m_stage === 'cM1c1' || m_stage === 'cM1c2') {
+              tnm_stage.value = 'IVB';
             } else {
-              tnm_stage = 'Stage Unknown';
+              tnm_stage.value = 'Stage Unknown';
             }
           }
         "
-      >
-      </form>
+        >
+          <div class="flex gap-4">
+            <fieldset>
+              <legend
+                class="block text-base sm:text-sm font-medium text-gray-700"
+              >
+                T stage
+              </legend>
+              <div>
+                <input
+                  id="t1a"
+                  class="rounded text-blue-700"
+                  type="radio"
+                  name="t_stage"
+                  value="1228892002"
+                /><label for="t1a" class="mx-1">T1a</label>
+              </div>
+              <div>
+                <input
+                  id="t1b"
+                  class="rounded text-blue-700"
+                  type="radio"
+                  name="t_stage"
+                  value="1228895000"
+                /><label for="t1b" class="mx-1">T1b</label>
+              </div>
+              <div>
+                <input
+                  id="t1c"
+                  class="rounded text-blue-700"
+                  type="radio"
+                  name="t_stage"
+                  value="1228899006"
+                /><label for="t1c" class="mx-1">T1c</label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend
+                class="block text-base sm:text-sm font-medium text-gray-700"
+              >
+                N stage
+              </legend>
+              <div>
+                <input
+                  class="rounded text-blue-700"
+                  type="radio"
+                  name="n_stage"
+                  value="1229967007"
+                /><label class="mx-1">cN0</label>
+              </div>
+              <div>
+                <input
+                  class="rounded text-blue-700"
+                  type="radio"
+                  name="n_stage"
+                  value="1229973008"
+                /><label class="mx-1">cN1</label>
+              </div>
+              <div>
+                <input
+                  class="rounded text-blue-700"
+                  type="radio"
+                  name="n_stage"
+                  value="1229978004"
+                /><label class="mx-1">cN2</label>
+              </div>
+              <div>
+                <input
+                  class="rounded text-blue-700"
+                  type="radio"
+                  name="n_stage"
+                  value="1229984001"
+                />
+                <label class="mx-1">cN3</label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend
+                class="block text-base sm:text-sm font-medium text-gray-700"
+              >
+                M stage
+              </legend>
+              <div>
+                <input
+                  class="rounded text-blue-700"
+                  type="radio"
+                  name="m_stage"
+                  value="1229901006"
+                /><label class="mx-1">cM0</label>
+              </div>
+              <div>
+                <input
+                  class="rounded text-blue-700"
+                  type="radio"
+                  name="m_stage"
+                  value="	1229903009"
+                /><label class="mx-1">cM1</label>
+              </div>
+            </fieldset>
+          </div>
+          <div class="mt-2 text-center">
+            <output name="tnm_stage" class="text-blue-700"></output>
+          </div>
+          <div>
+            <button
+              type="submit"
+              name="intent"
+              value="close"
+              class="w-full rounded-sm border border-gray-300"
+            >
+              Save &amp; Close
+            </button>
+          </div>
+        </form>
       </div>
     </div>
     <script>
       $(document).ready(function () {
-        console.debug('1. Connecting calculator...');
-        makeCalculatorV3(
-          'calculator',
-          function (data) {
+        console.debug("1. Connecting calculator...");
+        makeCalculatorV4(
+          "calculator",
+          {
             /**
-             * The object bellow is the Observation instance that will be sent back to Cicero
-             **/
-            const observation = {
-              text: {
-                status: "generated",
-                div: `<span xmlns='http://www.w3.org/1999/xhtml'>${data.tnm_stage}</span>`,
-              },
-              resourceType: 'Observation',
-              code: {
-                text: "TNM stage",
-                coding: [
-                  {
-                    display: "American Joint Committee on Cancer clinical stage group allowable value",
-                    code: "1222592004",
-                    system: "http://snomed.info/sct",
-                  },
-                ],
-              },
-              valueCodeableConcept:{
-                text: "TNM stage",
-                coding: [
-                  {
-                    display: "American Joint Committee on Cancer clinical stage group allowable value",
-                    code: "1222592004",
-                    system: "http://snomed.info/sct",
-                  },
-                ],
-              },
-            };
-            console.log(observation);
-            return observation;
+             * This function is called when the form is submitted
+             * @param {FormData} data - The form data
+             * @returns {Object} - The FHIR resource
+             */
+            formDataToFHIR(data) {
+              /**
+               * The object bellow is the Observation instance that will be sent back to Cicero
+               **/
+
+              const items = [];
+              if (data.has("t_stage")) {
+                items.push({
+                  linkId: "t_stage",
+                  text: "T stage",
+                  answer: [
+                    {
+                      valueCoding: {
+                        code: data.get("t_stage"),
+                        system: "http://snomed.info/sct",
+                      },
+                    },
+                  ],
+                });
+              }
+              if (data.has("n_stage")) {
+                items.push({
+                  linkId: "n_stage",
+                  text: "N stage",
+                  answer: [
+                    {
+                      valueCoding: {
+                        code: data.get("n_stage"),
+                        system: "http://snomed.info/sct",
+                      },
+                    },
+                  ],
+                });
+              }
+              if (data.has("m_stage")) {
+                items.push({
+                  linkId: "m_stage",
+                  text: "M stage",
+                  answer: [
+                    {
+                      valueCoding: {
+                        code: data.get("m_stage"),
+                        system: "http://snomed.info/sct",
+                      },
+                    },
+                  ],
+                });
+              }
+              if (data.has("tnm_stage")) {
+                items.push({
+                  linkId: "tnm_stage",
+                  text: "TNM stage",
+                  answer: [
+                    {
+                      valueString: data.get("tnm_stage"),
+                    },
+                  ],
+                });
+              }
+              const questionnaire = {
+                text: {
+                  status: "generated",
+                  div: `<div xmlns='http://www.w3.org/1999/xhtml'>${data.get(
+                    "tnm_stage"
+                  )}</div>`,
+                },
+                resourceType: "QuestionnaireResponse",
+                url: "http://calculator.tiro.health/tnm-stage",
+                status:
+                  data.get("intent") == "close" ? "completed" : "in-progress",
+                item: items,
+              };
+              return questionnaire;
+            },
+            fhirToFormData(fhir) {
+              const data = new FormData();
+              fhir.item.forEach((item) => {
+                if (item.linkId === "tnm_stage") {
+                  data.append(item.linkid, item.answer[0].valueString);
+                } else {
+                  data.append(item.linkId, item.answer[0].valueCoding.code);
+                }
+              });
+              return data;
+            },
           },
-          { autoSave: true },
+          { autoSave: true }
         );
-        console.debug('2. Calculator setup done.');
+        console.debug("2. Calculator setup done.");
       });
     </script>
   </body>

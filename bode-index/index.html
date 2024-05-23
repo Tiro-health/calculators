@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>BODE index</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  </head>
+  <body>
+    <div
+      class="min-h-full flex items-center justify-center py-12 px-10 sm:px-6 lg:px-8"
+    >
+      <div class="sm:max-w-md w-full space-y-8">
+        <div>
+          <h1 class="mt-6 text-center text-3xl font-bold text-blue-700">
+            BODE index
+          </h1>
+        </div>
+        <form
+          id="calculator"
+          class="rounded-md"
+          oninput="
+          bode_result = parseInt(fev1.value) + parseInt(walk.value) + parseInt(dyspnea.value) + parseInt(bmi.value);
+          if(isNaN(bode_result)){bode.value = '... points'}
+          else if (bode_result=='1'){bode.value = bode_result + ' point'}
+          else{bode.value = bode_result + ' points'}
+        "
+        >
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              FEV1 (% of predicted):
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base border-gray-300 rounded-md"
+              name="fev1"
+              value="0"
+            >
+              <option selected="selected" value="0">≥65</option>
+              <option value="1">50–64</option>
+              <option value="2">36–49</option>
+              <option value="3">≤35</option>
+            </select>
+          </div>
+
+          <div class="mt-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              6 Minute Walk Distance (m):
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base border-gray-300 rounded-md"
+              name="walk"
+              value="0"
+            >
+              <option selected="selected" value="0">≥350</option>
+              <option value="1">250–349</option>
+              <option value="2">150–249</option>
+              <option value="3">≤149</option>
+            </select>
+          </div>
+
+          <div class="mt-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              mMRC Dyspnea Scale:
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base border-gray-300 rounded-md"
+              name="dyspnea"
+              value="0"
+            >
+              <option selected="selected" value="0">0–1</option>
+              <option value="1">2</option>
+              <option value="2">3</option>
+              <option value="3">4</option>
+            </select>
+          </div>
+
+          <div class="mt-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              BMI:
+            </label>
+            <select
+              class="t-1 block shadow-sm sm:text-base border-gray-300 rounded-md"
+              name="bmi"
+              value="0"
+            >
+              <option selected="selected" value="0">≥21</option>
+              <option value="1">≤21</option>
+            </select>
+          </div>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2 block mt-6">
+            <label class="block font-bold text-gray-700">Total Points:</label>
+            <output
+              name="bode"
+              class="block w-fit text-2xl text-center items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-blue-700 bg-indigo-50 hover:bg-indigo-300"
+            ></output>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function () {
+        const NAME_SHORT_DESCRIPTION_MAP = {
+          fev1: 'FEV1',
+          walk: '6 Minute Walk Distance',
+          dyspnea: 'Dyspnea Scale',
+          bmi: 'BMI',
+        };
+
+        function dataToNarrative(data) {
+          const narrative = [];
+          for (const [key, value] of Object.entries(data)) {
+            if (value === '0') {
+              continue;
+            }
+            if (!NAME_SHORT_DESCRIPTION_MAP[key]) {
+              console.warn(`No description for ${key}`);
+              continue;
+            }
+            narrative.push(NAME_SHORT_DESCRIPTION_MAP[key] + ' ' + value);
+          }
+          return `<span>${data.bode} (${narrative.join(', ')})</span>`;
+        }
+
+        console.debug('1. Connecting calculator...');
+        makeCalculatorV3(
+          'calculator',
+          function (data) {
+            const bode_result =
+              parseInt(data.fev1) +
+              parseInt(data.walk) +
+              parseInt(data.dyspnea) +
+              parseInt(data.bmi);
+            const observation = {
+              text: {
+                status: 'generated',
+                div: dataToNarrative(data),
+              },
+              resourceType: 'Observation',
+              code: {
+                text: 'BODE index',
+                coding: [
+                  {
+                    display: 'BODE index',
+                    code: '6c866e46-1912-11ef-9262-0242ac120002',
+                    system: 'http://tiro.health/fhir/CodeSystem/auto-generated',
+                  },
+                ],
+              },
+              valueQuantity: {
+                value: bode_result,
+                unit: 'points',
+                code: 'points_code',
+                system: 'http://example.com/system',
+              },
+            };
+            console.log(observation);
+            return observation;
+          },
+          { autoSave: true },
+        );
+        console.debug('2. Calculator setup done.');
+      });
+    </script>
+  </body>
+</html>

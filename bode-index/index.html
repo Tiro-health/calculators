@@ -98,45 +98,22 @@
         </form>
       </div>
     </div>
+
     <script>
       $(document).ready(function () {
-        const NAME_SHORT_DESCRIPTION_MAP = {
-          fev1: 'FEV1',
-          walk: '6 Minute Walk Distance',
-          dyspnea: 'Dyspnea Scale',
-          bmi: 'BMI',
-        };
-
-        function dataToNarrative(data) {
-          const narrative = [];
-          for (const [key, value] of Object.entries(data)) {
-            if (value === '0') {
-              continue;
-            }
-            if (!NAME_SHORT_DESCRIPTION_MAP[key]) {
-              console.warn(`No description for ${key}`);
-              continue;
-            }
-            narrative.push(NAME_SHORT_DESCRIPTION_MAP[key] + ' ' + value);
-          }
-          return `<span>${data.bode} (${narrative.join(', ')})</span>`;
-        }
-
         console.debug('1. Connecting calculator...');
         makeCalculatorV3(
           'calculator',
           function (data) {
-            const bode_result =
-              parseInt(data.fev1) +
-              parseInt(data.walk) +
-              parseInt(data.dyspnea) +
-              parseInt(data.bmi);
+            /**
+             * The object bellow is the Observation instance that will be sent back to Cicero
+             **/
             const observation = {
-              text: {
-                status: 'generated',
-                div: dataToNarrative(data),
-              },
               resourceType: 'Observation',
+              text: {
+                status: "generated",
+                div: `<span xmlns='http://www.w3.org/1999/xhtml'>${data.bode}</span>`,
+              },
               code: {
                 text: 'BODE index',
                 coding: [
@@ -150,11 +127,11 @@
               valueQuantity: {
                 value: bode_result,
                 unit: 'points',
-                code: 'points_code',
-                system: 'http://example.com/system',
+                code: '281850001',
+                system: 'http://snomed.info/sct',
               },
             };
-            console.log(observation);
+            console.debug(observation);
             return observation;
           },
           { autoSave: true },

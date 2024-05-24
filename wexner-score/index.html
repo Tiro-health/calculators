@@ -157,41 +157,6 @@
     <script>
       $(document).ready(function () {
         console.debug('1. Connecting calculators...');
-
-        // BODE Calculator setup
-        makeCalculatorV3(
-          'bode-calculator',
-          function (data) {
-            const observation = {
-              resourceType: 'Observation',
-              text: {
-                status: 'generated',
-                div: `<span xmlns='http://www.w3.org/1999/xhtml'>${data.bode}</span>`,
-              },
-              code: {
-                text: 'BODE index',
-                coding: [
-                  {
-                    display: 'BODE index',
-                    code: '6c866e46-1912-11ef-9262-0242ac120002',
-                    system: 'http://tiro.health/fhir/CodeSystem/auto-generated',
-                  },
-                ],
-              },
-              valueQuantity: {
-                value: bode_result,
-                unit: 'points',
-                code: '281850001',
-                system: 'http://snomed.info/sct',
-              },
-            };
-            console.debug(observation);
-            return observation;
-          },
-          { autoSave: true },
-        );
-
-        // Wexner Calculator setup
         makeCalculatorV3(
           'wexner-calculator',
           function (data) {

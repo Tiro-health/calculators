@@ -275,6 +275,7 @@ function makeCalculatorV4(
    */
   params.keys().forEach((key) => {
     $(selector + ` input[name='${key}']`).val(params.getAll(key));
+    $(selector + ` input[name='${key}']`).attr("readOnly", true);
     $(selector + ` input[name='${key}']`).trigger("input");
   });
 

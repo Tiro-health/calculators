@@ -5,6 +5,7 @@
     <title>BODE index</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <script src="../makeCalculator.js"></script>
   </head>
   <body>
     <div
@@ -109,11 +110,11 @@
              * The object bellow is the Observation instance that will be sent back to Cicero
              **/
             const observation = {
-              resourceType: 'Observation',
               text: {
                 status: "generated",
                 div: `<span xmlns='http://www.w3.org/1999/xhtml'>${data.bode}</span>`,
               },
+              resourceType: 'Observation',
               code: {
                 text: 'BODE index',
                 coding: [

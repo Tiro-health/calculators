@@ -8,14 +8,10 @@
     <script src="../makeCalculator.js"></script>
   </head>
   <body>
-    <div
-      class="min-h-full flex items-center justify-center py-12 px-10 sm:px-6 lg:px-8"
-    >
+    <div class="min-h-full flex items-center justify-center py-12 px-10 sm:px-6 lg:px-8">
       <div class="sm:max-w-md w-full space-y-8">
         <div>
-          <h1 class="mt-6 text-center text-3xl font-bold text-blue-700">
-            BODE index
-          </h1>
+          <h1 class="mt-6 text-center text-3xl font-bold text-blue-700">BODE index</h1>
         </div>
         <form
           id="calculator"
@@ -27,68 +23,42 @@
           else{bode.value = bode_result + ' points'}
         "
         >
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              FEV1 (% of predicted):
-            </label>
-            <select
-              class="t-1 block shadow-sm sm:text-base border-gray-300 rounded-md"
-              name="fev1"
-              value="0"
-            >
-              <option selected="selected" value="0">≥65</option>
-              <option value="1">50–64</option>
-              <option value="2">36–49</option>
-              <option value="3">≤35</option>
-            </select>
+          <div class="flex flex-wrap space-x-4">
+            <div class="flex-shrink-0 w-1/4">
+              <label class="block text-base sm:text-sm font-medium text-gray-700">FEV1 (% of predicted):</label>
+              <select class="t-1 block shadow-sm sm:text-base border-gray-300 rounded-md" name="fev1" value="0">
+                <option selected="selected" value="0">≥65</option>
+                <option value="1">50–64</option>
+                <option value="2">36–49</option>
+                <option value="3">≤35</option>
+              </select>
+            </div>
+            <div class="flex-shrink-0 w-1/4 mt-2">
+              <label class="block text-base sm:text-sm font-medium text-gray-700">6 Minute Walk Distance (m):</label>
+              <select class="t-1 block shadow-sm sm:text-base border-gray-300 rounded-md" name="walk" value="0">
+                <option selected="selected" value="0">≥350</option>
+                <option value="1">250–349</option>
+                <option value="2">150–249</option>
+                <option value="3">≤149</option>
+              </select>
+            </div>
+            <div class="flex-shrink-0 w-1/4 mt-2">
+              <label class="block text-base sm:text-sm font-medium text-gray-700">mMRC Dyspnea Scale:</label>
+              <select class="t-1 block shadow-sm sm:text-base border-gray-300 rounded-md" name="dyspnea" value="0">
+                <option selected="selected" value="0">0–1</option>
+                <option value="1">2</option>
+                <option value="2">3</option>
+                <option value="3">4</option>
+              </select>
+            </div>
+            <div class="flex-shrink-0 w-1/4 mt-2">
+              <label class="block text-base sm:text-sm font-medium text-gray-700">BMI:</label>
+              <select class="t-1 block shadow-sm sm:text-base border-gray-300 rounded-md" name="bmi" value="0">
+                <option selected="selected" value="0">≥21</option>
+                <option value="1">≤21</option>
+              </select>
+            </div>
           </div>
-
-          <div class="mt-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              6 Minute Walk Distance (m):
-            </label>
-            <select
-              class="t-1 block shadow-sm sm:text-base border-gray-300 rounded-md"
-              name="walk"
-              value="0"
-            >
-              <option selected="selected" value="0">≥350</option>
-              <option value="1">250–349</option>
-              <option value="2">150–249</option>
-              <option value="3">≤149</option>
-            </select>
-          </div>
-
-          <div class="mt-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              mMRC Dyspnea Scale:
-            </label>
-            <select
-              class="t-1 block shadow-sm sm:text-base border-gray-300 rounded-md"
-              name="dyspnea"
-              value="0"
-            >
-              <option selected="selected" value="0">0–1</option>
-              <option value="1">2</option>
-              <option value="2">3</option>
-              <option value="3">4</option>
-            </select>
-          </div>
-
-          <div class="mt-2">
-            <label class="block text-base sm:text-sm font-medium text-gray-700">
-              BMI:
-            </label>
-            <select
-              class="t-1 block shadow-sm sm:text-base border-gray-300 rounded-md"
-              name="bmi"
-              value="0"
-            >
-              <option selected="selected" value="0">≥21</option>
-              <option value="1">≤21</option>
-            </select>
-          </div>
-
           <div class="col-span-6 sm:col-span-3 lg:col-span-2 block mt-6">
             <label class="block font-bold text-gray-700">Total Points:</label>
             <output
@@ -107,7 +77,7 @@
           'calculator',
           function (data) {
             /**
-             * The object bellow is the Observation instance that will be sent back to Cicero
+             * The object below is the Observation instance that will be sent back to Cicero
              **/
             const observation = {
               text: {

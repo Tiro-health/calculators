@@ -1,54 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Wexner score</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
-  </head>
-  <body>
-    <div
-      class="min-h-full flex items-center justify-center py-12 px-10 sm:px-6 lg:px-8"
+<head>
+  <meta charset="UTF-8" />
+  <title>Wexner score</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+</head>
+<body>
+  <div 
+    class="min-h-full flex items-center justify-center py-12 px-10 sm:px-6 lg:px-8"
     >
-      <div class="sm:max-w-md w-full space-y-8">
-        <div>
-          <h1 class="mt-6 text-center text-3xl font-bold text-blue-700">
-            Wexner score
-          </h1>
-        </div>
-        <div>
-          <form
-            id="wexner-calculator"
-            class="rounded-md"
-            oninput="
-            wexner_result = parseInt(solid_stool.value) + parseInt(liquid_stool.value) + parseInt(gas.value) + parseInt(pad.value) + parseInt(lifestyle.value);
-            if(isNaN(wexner_result)){wexner.value = '... points'}
-            else if (wexner_result=='1'){wexner.value = wexner_result + ' point'}
-            else{wexner.value = wexner_result + ' points'}
-          "
-          >
-            <div class="mt-2">
-              <label
-                class="block text-base sm:text-sm font-medium text-gray-700"
-              >
-                Incontinence to solid stool:
-              </label>
-              <select
-                class="t-1 block shadow-sm sm:text-base border-gray-300 rounded-md"
-                name="solid_stool"
-                value="0"
-              >
-                <option selected="selected" value="0">Never</option>
-                <option value="1">Less than once a month</option>
-                <option value="2">
-                  Less than once a week but at least once a month
-                </option>
-                <option value="3">
-                  Less than once a day but at least once a week
-                </option>
-                <option value="4">At least once a day</option>
-              </select>
-            </div>
+    <div class="sm:max-w-md w-full space-y-8">
+      <div>
+        <h1 class="mt-6 text-center text-3xl font-bold text-blue-700">
+          Wexner score
+        </h1>
+      </div>
+      <div>
+        <form id="wexner-calculator" class="rounded-md" oninput="
+              wexner_result = parseInt(solid_stool.value) + parseInt(liquid_stool.value) + parseInt(gas.value) + parseInt(pad.value) + parseInt(lifestyle.value);
+              if(isNaN(wexner_result)){wexner.value = '... points'}
+              else if (wexner_result=='1'){wexner.value = wexner_result + ' point'}
+              else{wexner.value = wexner_result + ' points'}
+              document.querySelector('output[name=wexner]').value = wexner.value;
+            ">
+          <div class="mt-2">
+            <label class="block text-base sm:text-sm font-medium text-gray-700">
+              Incontinence to solid stool:
+            </label>
+            <select class="t-1 block shadow-sm sm:text-base border-gray-300 rounded-md" name="solid_stool" value="0">
+              <option selected="selected" value="0">Never</option>
+              <option value="1">Less than once a month</option>
+              <option value="2">
+                Less than once a week but at least once a month
+              </option>
+              <option value="3">
+                Less than once a day but at least once a week
+              </option>
+              <option value="4">At least once a day</option>
+            </select>
+          </div>
 
             <div class="mt-2">
               <label
@@ -142,55 +133,53 @@
               </select>
             </div>
 
-            <div class="col-span-6 sm:col-span-3 lg:col-span-2 block mt-6">
-              <label class="block font-bold text-gray-700">Total Points:</label>
-              <output
-                name="wexner"
-                class="block w-fit text-2xl text-center items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-blue-700 bg-indigo-50 hover:bg-indigo-300"
-              ></output>
-            </div>
-          </form>
-        </div>
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2 block mt-6">
+            <label class="block font-bold text-gray-700">Total Points:</label>
+            <output name="wexner"
+              class="block w-fit text-2xl text-center items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-blue-700 bg-indigo-50 hover:bg-indigo-300"></output>
+          </div>
+        </form>
       </div>
     </div>
+  </div>
 
-    <script>
-      $(document).ready(function () {
-        console.debug('1. Connecting calculators...');
-        makeCalculatorV3(
-          'wexner-calculator',
-          function (data) {
-            const observation = {
-              resourceType: 'Observation',
-              text: {
-                status: 'generated',
-                div: `<span xmlns='http://www.w3.org/1999/xhtml'>${data.wexner}</span>`,
-              },
-              code: {
-                text: 'Wexner score',
-                coding: [
-                  {
-                    display: 'Wexner score',
-                    code: '6c866e46-1912-11ef-9262-0242ac120003',
-                    system: 'http://tiro.health/fhir/CodeSystem/auto-generated',
-                  },
-                ],
-              },
-              valueQuantity: {
-                value: wexner_result,
-                unit: 'points',
-                code: '281850002',
-                system: 'http://snomed.info/sct',
-              },
-            };
-            console.debug(observation);
-            return observation;
-          },
-          { autoSave: true },
-        );
+  <script>
+    $(document).ready(function () {
+      console.debug("1. Connecting calculators...");
+      makeCalculatorV3(
+        "wexner-calculator",
+        function (data) {
+          const observation = {
+            resourceType: "Observation",
+            text: {
+              status: "generated",
+              div: `<span xmlns='http://www.w3.org/1999/xhtml'>${data.wexner_result} points</span>`,
+            },
+            code: {
+              text: "Wexner score",
+              coding: [
+                {
+                  display: "Wexner score",
+                  code: "6c866e46-1912-11ef-9262-0242ac120003",
+                  system: "http://tiro.health/fhir/CodeSystem/auto-generated",
+                },
+              ],
+            },
+            valueQuantity: {
+              value: wexner_result,
+              unit: "points",
+              code: "281850002",
+              system: "http://snomed.info/sct",
+            },
+          };
+          console.debug(observation);
+          return observation;
+        },
+        { autoSave: true }
+      );
 
-        console.debug('2. Calculators setup done.');
-      });
-    </script>
-  </body>
+      console.debug("2. Calculators setup done.");
+    });
+  </script>
+</body>
 </html>

@@ -5,6 +5,7 @@
   <title>Wexner score</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <script src="../makeCalculator.js"></script>
 </head>
 <body>
   <div 
@@ -153,7 +154,7 @@
             resourceType: "Observation",
             text: {
               status: "generated",
-              div: `<span xmlns='http://www.w3.org/1999/xhtml'>${data.wexner_result} points</span>`,
+              div: `<span xmlns='http://www.w3.org/1999/xhtml'>${wexner_result} points</span>`,
             },
             code: {
               text: "Wexner score",

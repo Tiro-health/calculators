@@ -1,25 +1,22 @@
 <html>
-  <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
-    <title>Constipation Scoring System Calculator</title>
-    <meta charset="UTF-8" />
-  </head>
-  <body>
-    <div
-      class="min-h-full flex items-center justify-center py-12 px-10 sm:px-6 lg:px-8"
-    >
-      <div class="sm:max-w-md w-full space-y-8">
-        <div>
-          <h1 class="mt-6 text-center text-3xl font-bold text-blue-700">
-            Constipation Scoring System Calculator
-          </h1>
-        </div>
 
-        <form
-          id="constipation-calculator"
-          class="rounded-md"
-          oninput="
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <title>Altomare Score</title>
+  <meta charset="UTF-8" />
+</head>
+
+<body>
+  <div class="min-h-full flex items-center justify-center py-12 px-10 sm:px-6 lg:px-8">
+    <div class="sm:max-w-md w-full space-y-8">
+      <div>
+        <h1 class="mt-6 text-center text-3xl font-bold text-blue-700">
+          Altomare Score
+        </h1>
+      </div>
+
+      <form id="altomare-calculator" class="rounded-md" oninput="
             let total_score = 
               parseInt(mean_time.value) +
               parseInt(attempts.value) +
@@ -32,143 +29,179 @@
             
             total_score = isNaN(total_score) ? 0 : total_score;
             total.value = total_score + ' points';
-          "
-        >
-          <!-- Variables -->
-          <div>
-            <label class="block font-bold text-gray-700">
-              Mean time spent at the toilet
-            </label>
-            <select
-              class="block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
-              name="mean_time"
-            >
-              <option value="0">≤5 min</option>
-              <option value="1">6–10 min</option>
-              <option value="2">11–20 min</option>
-              <option value="3">21–30 min</option>
-              <option value="4">>30 min</option>
-            </select>
-          </div>
+          ">
+        <!-- Variables -->
+        <div>
+          <label class="block font-bold text-gray-700">
+            Mean time spent at the toilet
+          </label>
+          <select class="block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md" name="mean_time">
+            <option value="0">≤5 min</option>
+            <option value="1">6–10 min</option>
+            <option value="2">11–20 min</option>
+            <option value="3">21–30 min</option>
+            <option value="4">>30 min</option>
+          </select>
+        </div>
 
-          <div>
-            <label class="block font-bold text-gray-700">
-              N attempts to defecate per day
-            </label>
-            <select
-              class="block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
-              name="attempts"
-            >
-              <option value="0">One</option>
-              <option value="1">Two</option>
-              <option value="2">Three-four</option>
-              <option value="3">Five-six</option>
-              <option value="4">>Six</option>
-            </select>
-          </div>
+        <div>
+          <label class="block font-bold text-gray-700">
+            N attempts to defecate per day
+          </label>
+          <select class="block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md" name="attempts">
+            <option value="0">One</option>
+            <option value="1">Two</option>
+            <option value="2">Three-four</option>
+            <option value="3">Five-six</option>
+            <option value="4">>Six</option>
+          </select>
+        </div>
 
-          <div>
-            <label class="block font-bold text-gray-700">
-              Anal/vaginal digitation
-            </label>
-            <select
-              class="block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
-              name="digitation"
-            >
-              <option value="0">Never</option>
-              <option value="1">&gt;1/month, &lt;1/week</option>
-              <option value="2">Once a week</option>
-              <option value="3">Two to three per week</option>
-              <option value="4">Every defecation</option>
-            </select>
-          </div>
+        <div>
+          <label class="block font-bold text-gray-700">
+            Anal/vaginal digitation
+          </label>
+          <select class="block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md" name="digitation">
+            <option value="0">Never</option>
+            <option value="1">&gt;1/month, &lt;1/week</option>
+            <option value="2">Once a week</option>
+            <option value="3">Two to three per week</option>
+            <option value="4">Every defecation</option>
+          </select>
+        </div>
 
-          <div>
-            <label class="block font-bold text-gray-700">Use of laxatives</label>
-            <select
-              class="block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
-              name="laxatives"
-            >
-              <option value="0">Never</option>
-              <option value="1">&gt;1/month, &lt;1/week</option>
-              <option value="2">Once a week</option>
-              <option value="3">Two to three per week</option>
-              <option value="4">Every day</option>
-            </select>
-          </div>
+        <div>
+          <label class="block font-bold text-gray-700">Use of laxatives</label>
+          <select class="block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md" name="laxatives">
+            <option value="0">Never</option>
+            <option value="1">&gt;1/month, &lt;1/week</option>
+            <option value="2">Once a week</option>
+            <option value="3">Two to three per week</option>
+            <option value="4">Every day</option>
+          </select>
+        </div>
 
-          <div>
-            <label class="block font-bold text-gray-700">Use of enemas</label>
-            <select
-              class="block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
-              name="enemas"
-            >
-              <option value="0">Never</option>
-              <option value="1">&gt;1/month, &lt;1/week</option>
-              <option value="2">Once a week</option>
-              <option value="3">Two to three per week</option>
-              <option value="4">Every day</option>
-            </select>
-          </div>
+        <div>
+          <label class="block font-bold text-gray-700">Use of enemas</label>
+          <select class="block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md" name="enemas">
+            <option value="0">Never</option>
+            <option value="1">&gt;1/month, &lt;1/week</option>
+            <option value="2">Once a week</option>
+            <option value="3">Two to three per week</option>
+            <option value="4">Every day</option>
+          </select>
+        </div>
 
-          <div>
-            <label class="block font-bold text-gray-700">
-              Incomplete/fragmented defecation
-            </label>
-            <select
-              class="block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
-              name="incomplete"
-            >
-              <option value="0">Never</option>
-              <option value="1">&gt;1/month, &lt;1/week</option>
-              <option value="2">Once a week</option>
-              <option value="3">Two to three per week</option>
-              <option value="4">Every defecation</option>
-            </select>
-          </div>
+        <div>
+          <label class="block font-bold text-gray-700">
+            Incomplete/fragmented defecation
+          </label>
+          <select class="block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md" name="incomplete">
+            <option value="0">Never</option>
+            <option value="1">&gt;1/month, &lt;1/week</option>
+            <option value="2">Once a week</option>
+            <option value="3">Two to three per week</option>
+            <option value="4">Every defecation</option>
+          </select>
+        </div>
 
-          <div>
-            <label class="block font-bold text-gray-700">
-              Straining at defecation
-            </label>
-            <select
-              class="block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
-              name="straining"
-            >
-              <option value="0">Never</option>
-              <option value="1">&lt;25% of the time</option>
-              <option value="2">&lt;50% of the time</option>
-              <option value="3">&lt;75% of the time</option>
-              <option value="4">Every defecation</option>
-            </select>
-          </div>
+        <div>
+          <label class="block font-bold text-gray-700">
+            Straining at defecation
+          </label>
+          <select class="block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md" name="straining">
+            <option value="0">Never</option>
+            <option value="1">&lt;25% of the time</option>
+            <option value="2">&lt;50% of the time</option>
+            <option value="3">&lt;75% of the time</option>
+            <option value="4">Every defecation</option>
+          </select>
+        </div>
 
-          <div>
-            <label class="block font-bold text-gray-700">Stool consistency</label>
-            <select
-              class="block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md"
-              name="stool"
-            >
-              <option value="0">Soft</option>
-              <option value="1">Hard</option>
-              <option value="2">Hard and few</option>
-              <option value="3">Hard and few</option>
-              <option value="4">Fecaloma formation</option>
-            </select>
-          </div>
+        <div>
+          <label class="block font-bold text-gray-700">Stool consistency</label>
+          <select class="block shadow-sm sm:text-base sm:text-sm border-gray-300 rounded-md" name="stool">
+            <option value="0">Soft</option>
+            <option value="1">Hard</option>
+            <option value="2">Hard and few</option>
+            <option value="3">Fecaloma formation</option>
+          </select>
+        </div>
 
-          <!-- Total Score -->
-          <div class="mt-4">
-            <label class="block font-bold text-gray-700">Total Score</label>
-            <output
-              name="total"
-              class="block w-fit text-2xl text-center items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-blue-700 bg-indigo-50 hover:bg-indigo-300"
-            >
-              0 points
-            </output>
-          </div>
-        </form>
-      </div>
+        <!-- Total Score -->
+        <div class="mt-4">
+          <label class="block font-bold text-gray-700">Total Score</label>
+          <output name="total"
+            class="block w-fit text-2xl text-center items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-blue-700 bg-indigo-50 hover:bg-indigo-300">
+            0 points
+          </output>
+        </div>
+      </form>
     </div>
-  </body>
+  </div>
+  <script>
+    $(document).ready(function () {
+      console.debug("1. Connecting calculators...");
+
+      makeCalculatorV3(
+        "altomare-calculator",
+        function (data) {
+          // Calculate the total score
+          const meanTime = parseInt(data.mean_time) || 0;
+          const attempts = parseInt(data.attempts) || 0;
+          const digitation = parseInt(data.digitation) || 0;
+          const laxatives = parseInt(data.laxatives) || 0;
+          const enemas = parseInt(data.enemas) || 0;
+          const incomplete = parseInt(data.incomplete) || 0;
+          const straining = parseInt(data.straining) || 0;
+          const stool = parseInt(data.stool) || 0;
+
+          const altomare_result =
+            meanTime +
+            attempts +
+            digitation +
+            laxatives +
+            enemas +
+            incomplete +
+            straining +
+            stool;
+
+          // Prepare the Observation resource
+          const observation = {
+            resourceType: "Observation",
+            text: {
+              status: "generated",
+              div: `<span xmlns='http://www.w3.org/1999/xhtml'>${total_score} points</span>`,
+            },
+            code: {
+              text: "Altomare Score",
+              coding: [
+                {
+                  "system": "http://tiro.health/fhir/CodeSystem/auto-generated",
+                  "display": "Altomare score",
+                  "code": "76f34cf4-aca7-11ef-9cd2-0242ac120002",
+                },
+              ],
+            },
+            valueQuantity: {
+              value: total_score,
+              unit: "points",
+              code: "281850002",
+              system: "http://snomed.info/sct",
+            },
+          };
+
+          console.debug(observation);
+          return observation;
+        },
+        { autoSave: true }
+      );
+
+      console.debug("2. Calculators setup done.");
+    });
+  </script>
+
+
+</body>
+
 </html>

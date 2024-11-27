@@ -1,0 +1,1 @@
+Modified Rankin Scale for Neurologic Disability

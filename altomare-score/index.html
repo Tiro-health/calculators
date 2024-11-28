@@ -27,8 +27,10 @@
               parseInt(incomplete.value) +
               parseInt(straining.value) +
               parseInt(stool.value);
-            
-            total.value = total_score + ' points';
+
+            if(isNaN(total_score)){total.value = '... points'}
+              else if (total_score=='1'){total.value = total_score + ' point'}
+              else{total.value = total_score + ' points'}
           ">
         <!-- Variables -->
         <div>

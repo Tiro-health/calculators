@@ -140,65 +140,44 @@
     </div>
   </div>
   <script>
-    $(document).ready(function () {
-      console.debug("1. Connecting calculators...");
-
-      makeCalculatorV3(
-        "altomare-calculator",
-        function (data) {
-          // Calculate the total score
-          const meanTime = parseInt(data.mean_time) || 0;
-          const attempts = parseInt(data.attempts) || 0;
-          const digitation = parseInt(data.digitation) || 0;
-          const laxatives = parseInt(data.laxatives) || 0;
-          const enemas = parseInt(data.enemas) || 0;
-          const incomplete = parseInt(data.incomplete) || 0;
-          const straining = parseInt(data.straining) || 0;
-          const stool = parseInt(data.stool) || 0;
-
-          const altomare_result =
-            meanTime +
-            attempts +
-            digitation +
-            laxatives +
-            enemas +
-            incomplete +
-            straining +
-            stool;
-
-          // Prepare the Observation resource
-          const observation = {
-            resourceType: "Observation",
-            text: {
-              status: "generated",
-              div: `<span xmlns='http://www.w3.org/1999/xhtml'>${total_score} points</span>`,
-            },
-            code: {
-              text: "Altomare Score",
-              coding: [
+    console.debug("1. Connecting calculator...");
+    makeCalculatorV3(
+      "altomare-calculator",
+      function (data) {
+        /**
+         * The object bellow is the Observation instance that will be sent back to Cicero
+         **/
+        const observation = {
+          text: {
+            status: "generated",
+            div: `<span xmlns='http://www.w3.org/1999/xhtml'>${data.total}</span>`,
+          },
+          resourceType: "Observation",
+          code:
+          {
+            "text": "Altomare score",
+            "coding":
+              [
                 {
                   "system": "http://tiro.health/fhir/CodeSystem/auto-generated",
                   "display": "Altomare score",
                   "code": "76f34cf4-aca7-11ef-9cd2-0242ac120002",
                 },
               ],
-            },
-            valueQuantity: {
-              value: total_score,
-              unit: "points",
-              code: "281850002",
-              system: "http://snomed.info/sct",
-            },
-          };
-
-          console.debug(observation);
-          return observation;
-        },
-        { autoSave: true }
-      );
-
-      console.debug("2. Calculators setup done.");
-    });
+          },
+          valueQuantity: {
+            value: parseFloat(total_score),
+            unit: 'points',
+            code: '281850001',
+            system: 'http://snomed.info/sct',
+          },
+        };
+        console.log(observation);
+        return observation;
+      },
+      { autoSave: true }
+    );
+    console.debug("2. Calculator setup done.");
   </script>
 
 

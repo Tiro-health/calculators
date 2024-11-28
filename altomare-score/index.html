@@ -18,7 +18,7 @@
       </div>
 
       <form id="altomare-calculator" class="rounded-md" oninput="
-            let total_score = 
+            total_score = 
               parseInt(mean_time.value) +
               parseInt(attempts.value) +
               parseInt(digitation.value) +
@@ -28,7 +28,6 @@
               parseInt(straining.value) +
               parseInt(stool.value);
             
-            total_score = isNaN(total_score) ? 0 : total_score;
             total.value = total_score + ' points';
           ">
         <!-- Variables -->
